@@ -2,7 +2,7 @@
   import { Button } from "bits-ui";
 </script>
 
-<main class="h-full flex flex-col justify-center items-center space-y-16">
+<main class="h-full flex flex-col justify-center items-center space-y-8">
   <div class="flex flex-col space-y-4 items-center">
     <h1 class="flex items-center space-x-2.5 text text-5xl font-impactt">
       <span>The</span>
@@ -15,7 +15,11 @@
     <h2 class="font-medium text-2xl">The game for movie lovers.</h2>
   </div>
 
-  <Button.Root class="bg-imdb text-black py-2 px-24 text-2xl rounded-md hover:scale-105 active:scale-95 duration-150 font-bold">
-    PLAY!
+  <div></div>
+
+  <Button.Root class="group bg-black text-white border-2 border-white py-2 px-24 text-2xl rounded-md hover:scale-105 hover:bg-white hover:text-black active:scale-95 duration-150 font-bold flex items-center space-x-2">
+    <iconify-icon icon="bx:camera-movie" class="text-[26px] group-hover:-scale-x-100 duration-150"></iconify-icon>
+    <span>PLAY!</span>
+    <iconify-icon icon="bx:camera-movie" class="text-[26px] group-hover:scale-x-100 -scale-x-100 duration-150"></iconify-icon>
   </Button.Root>
 </main>
