@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { type GameMode } from "$lib/utils";
+	import type { GameMode } from "$lib/utils";
   import { RadioGroup } from "bits-ui";
 
-  let gameMode: GameMode = "budget";
+  let gameMode: GameMode = "rating";
 </script>
 
 <main class="h-full flex flex-col justify-center items-center gap-16">
+  <!-- Title -->
   <div class="flex flex-col gap-3 items-center">
     <h1 class="flex items-center gap-2.5 text text-6xl font-impactt">
       <span>The</span>
@@ -18,6 +19,7 @@
     <h2 class="font-medium text-2xl">The game for movie lovers.</h2>
   </div>
 
+  <!-- Game mode selection -->
   <RadioGroup.Root class="flex items-center justify-center gap-8" bind:value={gameMode}>
     <RadioGroup.Item
       value="budget"
@@ -28,7 +30,18 @@
         <iconify-icon icon="ic:round-attach-money" class=""></iconify-icon>
         <span>BUDGET MODE</span>
       </h3>
-      <p class="text-lg">Which movie had the higher budget?</p>
+      <p class="text-lg">Which movie has the higher budget?</p>
+    </RadioGroup.Item>
+    <RadioGroup.Item
+      value="rating"
+      id="rating"
+      class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:scale-110 duration-150 w-80"
+    >
+      <h3 class="text-2xl font-impactt tracking-wider flex justify-center items-center gap-1">
+        <iconify-icon icon="material-symbols:star-rounded" class=""></iconify-icon>
+        <span>RATING MODE</span>
+      </h3>
+      <p class="text-lg">Which movie has a higher rating?</p>
     </RadioGroup.Item>
     <RadioGroup.Item
       value="time"
@@ -43,8 +56,9 @@
     </RadioGroup.Item>
   </RadioGroup.Root>
 
+  <!-- Play button -->
   <a
-    href="/play?mode={gameMode}"
+    href="/play/{gameMode}"
     class="group bg-black text-white border-2 border-white py-2 px-24 text-2xl rounded-md hover:scale-105 hover:bg-white hover:text-black active:scale-95 duration-150 font-bold flex items-center gap-3"
   >
     <iconify-icon
@@ -61,6 +75,7 @@
   </a>
 </main>
 
+<!-- Info -->
 <footer class="absolute bottom-0 w-screen p-2 text-sm flex gap-1 items-center">
   Made with
   <a href="https://svelte.dev" target="_blank" class="h-4">

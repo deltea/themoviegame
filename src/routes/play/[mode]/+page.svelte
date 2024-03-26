@@ -1,5 +1,8 @@
 <script lang="ts">
   import type { Movie } from "$lib/utils";
+  import type { PageData } from "./$types";
+
+  export let data: PageData;
 
   let movie1: Movie;
   let movie2: Movie;

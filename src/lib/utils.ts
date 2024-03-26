@@ -34,4 +34,4 @@ export interface Movie {
   rating: number;
 }
 
-export type GameMode = "budget" | "time";
+export type GameMode = "budget" | "time" | "rating";
