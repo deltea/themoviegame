@@ -1,30 +1,7 @@
-<script lang="ts">
-  import type { Movie } from "$lib/utils";
-
-  let movie1: Movie;
-  let movie2: Movie;
-
-  async function fetchMovie() {
-    const response = await fetch("/api/random-movie", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    return await response.json();
-  }
-
-  async function click() {
-    movie1 = await fetchMovie()
-    movie2 = await fetchMovie()
-  }
-</script>
-
-<button on:click={async () => await click()}>Movie</button>
-{#if movie1 && movie2}
-  <div class="flex w-full h-screen">
-    <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="">
-    <img src="https://image.tmdb.org/t/p/original{movie2.poster_path}" alt={movie2.title} class="">
-  </div>
-{/if}
+<main class="h-full flex justify-center items-center">
+  <h1 class="text font-impactt text-5xl">
+    The
+    <span class="text-black py-1 px-3.5 mx-1 tracking-wide rounded-lg bg-imdb">MOVIE</span>
+    Game
+  </h1>
+</main>

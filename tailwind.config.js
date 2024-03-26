@@ -5,7 +5,14 @@ export default {
     fontFamily: {
       "sans": ["Inter Variable"]
     },
-    extend: {},
+    extend: {
+      colors: {
+        "imdb": "#e2b616",
+      },
+      fontFamily: {
+        "impactt": ["ImpactT"],
+      },
+    },
   },
   plugins: [],
 }
