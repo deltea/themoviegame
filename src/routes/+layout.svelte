@@ -1,5 +1,7 @@
 <script lang="ts">
   import "@fontsource-variable/inter";
+  import "@fontsource-variable/roboto-condensed";
+  import "iconify-icon";
   import "../global.css";
 </script>
 
