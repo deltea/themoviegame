@@ -23,8 +23,10 @@
 
 <button on:click={async () => await click()}>Movie</button>
 {#if movie1 && movie2}
-  <div class="flex w-full h-screen">
+  <div class="flex w-full h-screen justify-between">
     <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="h-full">
+    <p>{movie1.rating}</p>
     <img src="https://image.tmdb.org/t/p/original{movie2.poster_path}" alt={movie2.title} class="h-full">
+    <p>{movie2.rating}</p>
   </div>
 {/if}

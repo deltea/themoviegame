@@ -10,7 +10,7 @@
     <h1 class="flex items-center gap-2.5 text text-6xl font-impactt">
       <span>The</span>
       <span class="flex items-center text-black py-1 px-4 tracking-wide rounded-lg bg-imdb">
-        <iconify-icon icon="tabler:movie" class="text-5xl -ml-1"></iconify-icon>
+        <iconify-icon icon="tabler:movie" class="-ml-1"></iconify-icon>
         <span>MOVIE</span>
       </span>
       <span>Game</span>
@@ -39,7 +39,7 @@
         <iconify-icon icon="material-symbols:event-outline-rounded" class=""></iconify-icon>
         <span>TIME MODE</span>
       </h3>
-      <p class="text-lg">Which movie is newer or older?</p>
+      <p class="text-lg">Which movie is newer?</p>
     </RadioGroup.Item>
   </RadioGroup.Root>
 
