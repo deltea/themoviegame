@@ -5,11 +5,11 @@
   let gameMode: GameMode = "budget";
 </script>
 
-<main class="h-full flex flex-col justify-center items-center gap-12">
-  <div class="flex flex-col gap-4 items-center">
-    <h1 class="flex items-center gap-2.5 text text-5xl font-impactt">
+<main class="h-full flex flex-col justify-center items-center gap-16">
+  <div class="flex flex-col gap-3 items-center">
+    <h1 class="flex items-center gap-2.5 text text-6xl font-impactt">
       <span>The</span>
-      <span class="flex items-center text-black py-1 px-3.5 tracking-wide rounded-lg bg-imdb">
+      <span class="flex items-center text-black py-1 px-4 tracking-wide rounded-lg bg-imdb">
         <iconify-icon icon="tabler:movie" class="text-5xl -ml-1"></iconify-icon>
         <span>MOVIE</span>
       </span>
