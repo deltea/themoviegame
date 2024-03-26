@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         "imdb": "#e2b616",
+        "muted": "#555",
       },
       fontFamily: {
         "impactt": ["ImpactT"],
