@@ -12,23 +12,22 @@ export function random(min: number, max: number) {
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[];
+  budget: number;
+  homepage: string;
   id: number;
-  original_language: OriginalLanguage;
+  imdb_id: string;
+  original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
   poster_path: string;
   release_date: Date;
+  revenue: number;
+  runtime: number;
+  status: string;
+  tagline: string;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
-
-enum OriginalLanguage {
-  En = "en",
-  ID = "id",
-  Pt = "pt",
-  Zh = "zh",
 }
