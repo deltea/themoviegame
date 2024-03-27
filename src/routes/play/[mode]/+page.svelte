@@ -215,10 +215,40 @@
 
         <!-- The release date -->
         {#if movieInfo?.release_date}
-          <div class="flex gap-3">
-            <h2 class="font-semibold">Release Date:</h2>
-            <p>{DateFormatter.format(new Date(movieInfo.release_date))}</p>
-          </div>
+          <p>
+            <span class="font-semibold mr-2">Release Date:</span>
+            <span>{DateFormatter.format(new Date(movieInfo.release_date))}</span>
+          </p>
+        {/if}
+
+        <!-- The budget -->
+        {#if movieInfo?.budget}
+          <p>
+            <span class="font-semibold mr-2">Budget:</span>
+            <span>
+              {#if data.gameMode === "budget"}
+                [REDACTED]
+              {:else}
+                ${NumberFormatter.format(movieInfo.budget)}
+              {/if}
+            </span>
+          </p>
+        {/if}
+
+        <!-- The runtime -->
+        {#if movieInfo?.runtime}
+          <p>
+            <span class="font-semibold mr-2">Runtime:</span>
+            <span>{movieInfo.runtime} mins</span>
+          </p>
+        {/if}
+
+        <!-- The rating -->
+        {#if movieInfo?.rating}
+          <p>
+            <span class="font-semibold mr-2">Rating:</span>
+            <span>{movieInfo.rating}</span>
+          </p>
         {/if}
 
         <!-- The movie plot -->
