@@ -165,7 +165,7 @@
     />
     <Dialog.Content
       transition={fly}
-      transitionConfig={{ y: 8, duration: 150 }}
+      transitionConfig={{ y: 350, duration: 150, opacity: 100 }}
       class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-4"
     >
       <!-- Top Bar -->
