@@ -69,7 +69,7 @@
 {#if state === "load"}
   <main class="h-full bg-imdb flex justify-center items-center" transition:slide>
     <h1 class="text-4xl font-impactt flex items-center gap-2">
-      LOADING...
+      LOADING MOVIES...
       <iconify-icon icon="humbleicons:spinner-earring" class="animate-spin"></iconify-icon>
     </h1>
   </main>
