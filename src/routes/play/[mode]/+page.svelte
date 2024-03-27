@@ -67,8 +67,11 @@
 
 <!-- Loading movies -->
 {#if state === "load"}
-  <main class="h-full bg-imdb" transition:slide>
-    <p>Loading...</p>
+  <main class="h-full bg-imdb flex justify-center items-center" transition:slide>
+    <h1 class="text-4xl font-impactt flex items-center gap-2">
+      LOADING...
+      <iconify-icon icon="humbleicons:spinner-earring" class="animate-spin"></iconify-icon>
+    </h1>
   </main>
 
 <!-- Game over -->
@@ -170,7 +173,7 @@
     />
     <Dialog.Content
       transition={fly}
-      transitionConfig={{ y: 350, duration: 150, opacity: 100 }}
+      transitionConfig={{ y: 500, duration: 150, opacity: 100 }}
       class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-4"
     >
       <!-- Top Bar -->
