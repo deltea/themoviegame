@@ -9,6 +9,8 @@ export function random(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min)
 }
 
+export const NumberFormatter = new Intl.NumberFormat();
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
