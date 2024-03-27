@@ -170,9 +170,9 @@
     >
       <!-- Top Bar -->
       <div class="flex justify-between items-center">
-        <h1 class="font-impactt text-2xl">ABOUT THE MOVIE "{movieInfo?.title}"</h1>
+        <h1 class="font-impactt text-2xl">About "{movieInfo?.title}"</h1>
         <Dialog.Close class="right-6 top-6 flex justify-center items-center">
-          <iconify-icon icon="mingcute:close-fill" class="text-3xl"></iconify-icon>
+          <iconify-icon icon="mingcute:close-fill" class="text-2xl"></iconify-icon>
         </Dialog.Close>
       </div>
 
