@@ -14,7 +14,9 @@ export const DateFormatter = new Intl.DateTimeFormat("en-US", {
   dateStyle: "long"
 });
 
-export const genreIcons = {
+export const genreIcons: {
+  [name: string]: string
+} = {
   "Action": "material-symbols:bomb-rounded",
   "Adventure": "mingcute:compass-fill",
   "Animation": "mingcute:movie-fill",
