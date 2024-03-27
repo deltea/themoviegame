@@ -183,10 +183,13 @@
 
       <!-- Actual content -->
       <div class="text-xl">
-        <!-- Movie genres -->
+        <!-- The movie genres -->
         {#if movieInfo?.genres}
-          <div class="flex-grow flex items-center gap-3">
-            <h2 class="font-semibold">Genres:</h2>
+          <div class="flex-grow flex items-center">
+            <h2 class="font-semibold mr-2 flex items-center gap-1.5">
+              <iconify-icon icon="bx:camera-movie" class="text-xl"></iconify-icon>
+              Genres:
+            </h2>
             <div class="flex items-center gap-2">
               {#each movieInfo?.genres as genre}
                 {#if Object.keys(genreIcons).includes(genre.name)}
@@ -215,16 +218,22 @@
 
         <!-- The release date -->
         {#if movieInfo?.release_date}
-          <p>
-            <span class="font-semibold mr-2">Release Date:</span>
+          <p class="flex items-center">
+            <span class="font-semibold mr-2 flex items-center gap-1.5">
+              <iconify-icon icon="material-symbols:calendar-clock-outline-rounded" class="text-xl"></iconify-icon>
+              Release Date:
+            </span>
             <span>{DateFormatter.format(new Date(movieInfo.release_date))}</span>
           </p>
         {/if}
 
         <!-- The budget -->
         {#if movieInfo?.budget}
-          <p>
-            <span class="font-semibold mr-2">Budget:</span>
+          <p class="flex items-center">
+            <span class="font-semibold mr-2 flex items-center gap-1.5">
+              <iconify-icon icon="mingcute:pig-money-line" class="text-xl"></iconify-icon>
+              Budget:
+            </span>
             <span>
               {#if data.gameMode === "budget"}
                 [REDACTED]
@@ -237,16 +246,22 @@
 
         <!-- The runtime -->
         {#if movieInfo?.runtime}
-          <p>
-            <span class="font-semibold mr-2">Runtime:</span>
+          <p class="flex items-center">
+            <span class="font-semibold mr-2 flex items-center gap-1.5">
+              <iconify-icon icon="tabler:ruler-measure" class="text-xl"></iconify-icon>
+              Runtime:
+            </span>
             <span>{movieInfo.runtime} mins</span>
           </p>
         {/if}
 
         <!-- The rating -->
         {#if movieInfo?.rating}
-          <p>
-            <span class="font-semibold mr-2">Rating:</span>
+          <p class="flex items-center">
+            <span class="font-semibold mr-2 flex items-center gap-1.5">
+              <iconify-icon icon="material-symbols:star-outline-rounded" class="text-xl"></iconify-icon>
+              Rating:
+            </span>
             <span>{movieInfo.rating}</span>
           </p>
         {/if}
@@ -254,7 +269,10 @@
         <!-- The movie plot -->
         {#if movieInfo?.overview}
           <div class="flex gap-3 items-start">
-            <h2 class="font-semibold">Overview:</h2>
+            <h2 class="font-semibold flex items-center gap-1.5">
+              <iconify-icon icon="mingcute:book-6-line" class="text-xl"></iconify-icon>
+              Overview:
+            </h2>
             <p>{movieInfo?.overview}</p>
           </div>
         {/if}
