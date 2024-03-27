@@ -11,6 +11,27 @@ export function random(min: number, max: number) {
 
 export const NumberFormatter = new Intl.NumberFormat();
 
+export const genreIcons = {
+  "Action": "material-symbols:bomb-rounded",
+  "Adventure": "mingcute:compass-fill",
+  "Animation": "mingcute:movie-fill",
+  "Comedy": "ri:emotion-laugh-fill",
+  "Crime": "mdi:handcuffs",
+  "Documentary": "material-symbols:android-camera",
+  "Drama": "material-symbols:comedy-mask-rounded",
+  "Family": "material-symbols:family-restroom-rounded",
+  "Fantasy": "material-symbols:magic-button",
+  "History": "material-symbols:history-rounded",
+  "Horror": "mingcute:skull-fill",
+  "Music": "mingcute:music-2-fill",
+  "Mystery": "mingcute:search-2-fill",
+  "Romance": "material-symbols:heart-broken-rounded",
+  "Science Fiction": "material-symbols:science",
+  "Thriller": "material-symbols:knife",
+  "War": "mingcute:tank-fill",
+  "Western": "mdi:account-cowboy-hat",
+}
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;

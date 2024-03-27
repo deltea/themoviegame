@@ -35,6 +35,7 @@
     movie2 = await fetchMovie();
     nextMovie = await fetchMovie();
 
+    print
     state = "game";
   }
 
