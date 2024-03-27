@@ -174,7 +174,7 @@
     <Dialog.Content
       transition={fly}
       transitionConfig={{ y: 500, duration: 150, opacity: 100 }}
-      class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-4"
+      class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-5"
     >
       <!-- Top Bar -->
       <div class="flex justify-between items-center">
@@ -271,7 +271,7 @@
 
         <!-- The movie plot -->
         {#if movieInfo?.overview}
-          <div class="flex gap-3 items-start">
+          <div class="">
             <h2 class="font-semibold flex items-center gap-1.5">
               <iconify-icon icon="mingcute:book-6-line" class="text-xl"></iconify-icon>
               Overview:
