@@ -72,8 +72,6 @@
     <img src="https://image.tmdb.org/t/p/original{movie1?.poster_path}" alt={movie1?.title} class="h-full">
 
     <div class="flex flex-col items-center justify-evenly w-full">
-      <!-- <h1 class="text-3xl font-medium font-impactt">ROUND {round}</h1> -->
-
       <!-- First movie info -->
       <div class="flex flex-col items-center gap-3 justify-center">
         <!-- Movie title -->
@@ -90,9 +88,11 @@
       </div>
 
       <div class="flex gap-4 items-center justify-center w-full px-8">
-        <Separator.Root class="h-[1px] flex-grow bg-white" />
+        <Separator.Root class="h-[2px] flex-grow bg-white" />
+        <iconify-icon icon="bxs:camera-movie" class="text-3xl -scale-x-100"></iconify-icon>
+        <h1 class="text-3xl font-medium font-impactt">ROUND {round}</h1>
         <iconify-icon icon="bxs:camera-movie" class="text-3xl"></iconify-icon>
-        <Separator.Root class="h-[1px] flex-grow bg-white" />
+        <Separator.Root class="h-[2px] flex-grow bg-white" />
       </div>
 
       <!-- Second movie -->
