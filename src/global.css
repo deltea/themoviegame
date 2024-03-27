@@ -5,6 +5,7 @@
 body {
   color: white;
   background-color: black;
+  overflow: hidden;
 }
 
 @font-face {

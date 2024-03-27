@@ -1,9 +1,9 @@
 <script lang="ts">
+  import type { PageData } from "./$types";
 	import { onMount } from "svelte";
   import { NumberFormatter, type Movie } from "$lib/utils";
-  import type { PageData } from "./$types";
-  import { slide } from "svelte/transition";
-  import { Separator } from "bits-ui";
+  import { fade, fly, slide } from "svelte/transition";
+  import { Separator, Dialog } from "bits-ui";
 
   export let data: PageData;
 
@@ -12,10 +12,12 @@
   let movie1: Movie | null;
   let movie2: Movie | null;
   let nextMovie: Movie | null;
+  let movieInfo: Movie | null;
 
   let round = 1;
   let state: "load" | "game" | "end" = "load";
   let answerState: "correct" | "incorrect" | null = null;
+  let infoDialogOpen = false;
 
   async function fetchMovie() {
     const response = await fetch("/api/random-movie", {
@@ -48,6 +50,11 @@
     }, answerDuration);
   }
 
+  function setMovieInfo(movie: Movie | null) {
+    infoDialogOpen = true;
+    movieInfo = movie;
+  }
+
   onMount(() => {
     setMovies();
   });
@@ -69,7 +76,15 @@
 {:else if state === "game"}
   <main class="flex h-full w-full justify-between" transition:slide>
     <!-- Poster 1 -->
-    <img src="https://image.tmdb.org/t/p/original{movie1?.poster_path}" alt={movie1?.title} class="h-full">
+    <div class="w-full relative">
+      <img src="https://image.tmdb.org/t/p/original{movie1?.poster_path}" alt={movie1?.title} class="h-full">
+      <button
+        on:click={() => setMovieInfo(movie1)}
+        class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
+      >
+        <iconify-icon icon="material-symbols:info-rounded" class="text-4xl"></iconify-icon>
+      </button>
+    </div>
 
     <div class="flex flex-col items-center justify-evenly w-full">
       <!-- First movie info -->
@@ -127,6 +142,42 @@
     </div>
 
     <!-- Poster 2 -->
-    <img src="https://image.tmdb.org/t/p/original{movie2?.poster_path}" alt={movie2?.title} class="h-full">
+    <div class="w-full relative">
+      <img src="https://image.tmdb.org/t/p/original{movie2?.poster_path}" alt={movie2?.title} class="h-full">
+      <button
+        on:click={() => setMovieInfo(movie2)}
+        class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
+      >
+        <iconify-icon icon="material-symbols:info-rounded" class="text-4xl"></iconify-icon>
+      </button>
+    </div>
   </main>
 {/if}
+
+<!-- Movie info dialog -->
+<Dialog.Root bind:open={infoDialogOpen}>
+  <Dialog.Trigger />
+  <Dialog.Portal>
+    <Dialog.Overlay
+      transition={fade}
+      transitionConfig={{ duration: 150 }}
+      class="fixed bg-black/80 z-50 inset-0"
+    />
+    <Dialog.Content
+      transition={fly}
+      transitionConfig={{ y: 8, duration: 150 }}
+      class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-4"
+    >
+      <!-- Top Bar -->
+      <div class="flex justify-between items-center">
+        <h1 class="font-impactt text-2xl">ABOUT THE MOVIE "{movieInfo?.title}"</h1>
+        <Dialog.Close class="right-6 top-6 flex justify-center items-center">
+          <iconify-icon icon="mingcute:close-fill" class="text-3xl"></iconify-icon>
+        </Dialog.Close>
+      </div>
+
+      <!-- Actual content -->
+      <p class="flex-grow">yo wat up</p>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>
