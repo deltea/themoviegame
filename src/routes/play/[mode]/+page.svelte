@@ -1,10 +1,14 @@
 <script lang="ts">
   import type { PageData } from "./$types";
 	import { onMount } from "svelte";
-  import { NumberFormatter, type Movie } from "$lib/utils";
   import { fade, fly, slide } from "svelte/transition";
   import { Separator, Dialog, Tooltip } from "bits-ui";
-	import { genreIcons } from "$lib/utils";
+  import {
+    DateFormatter,
+    NumberFormatter,
+    genreIcons,
+    type Movie
+  } from "$lib/utils";
 
   export let data: PageData;
 
@@ -179,10 +183,10 @@
 
       <!-- Actual content -->
       <div class="text-xl">
-        <p class="flex-grow flex items-center gap-3">
-          <!-- Movie genres -->
-          {#if movieInfo?.genres}
-            <span>Genres:</span>
+        <!-- Movie genres -->
+        {#if movieInfo?.genres}
+          <div class="flex-grow flex items-center gap-3">
+            <h2 class="font-semibold">Genres:</h2>
             <div class="flex items-center gap-2">
               {#each movieInfo?.genres as genre}
                 {#if Object.keys(genreIcons).includes(genre.name)}
@@ -206,10 +210,24 @@
                 {/if}
               {/each}
             </div>
-          {/if}
+          </div>
+        {/if}
 
-          <!-- The movie plot -->
-        </p>
+        <!-- The release date -->
+        {#if movieInfo?.release_date}
+          <div class="flex gap-3">
+            <h2 class="font-semibold">Release Date:</h2>
+            <p>{DateFormatter.format(new Date(movieInfo.release_date))}</p>
+          </div>
+        {/if}
+
+        <!-- The movie plot -->
+        {#if movieInfo?.overview}
+          <div class="flex gap-3 items-start">
+            <h2 class="font-semibold">Overview:</h2>
+            <p>{movieInfo?.overview}</p>
+          </div>
+        {/if}
       </div>
     </Dialog.Content>
   </Dialog.Portal>
