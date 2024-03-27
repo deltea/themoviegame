@@ -88,7 +88,7 @@
 
     <div class="flex flex-col items-center justify-evenly w-full">
       <!-- First movie info -->
-      <div class="flex flex-col items-center gap-3 justify-center">
+      <div class="flex flex-col items-center gap-2 justify-center">
         <!-- Movie title -->
         <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
           <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
@@ -111,7 +111,7 @@
       </div>
 
       <!-- Second movie -->
-      <div class="flex flex-col items-center gap-3 justify-center w-full">
+      <div class="flex flex-col items-center gap-2 justify-center w-full">
         <!-- Movie title -->
         <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
           <span>{movie2?.title}</span>
