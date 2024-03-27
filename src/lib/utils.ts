@@ -11,7 +11,7 @@ export function random(min: number, max: number) {
 
 export const NumberFormatter = new Intl.NumberFormat();
 export const DateFormatter = new Intl.DateTimeFormat("en-US", {
-  dateStyle: "medium"
+  dateStyle: "long"
 });
 
 export const genreIcons = {
