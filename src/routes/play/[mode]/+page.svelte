@@ -3,7 +3,8 @@
 	import { onMount } from "svelte";
   import { NumberFormatter, type Movie } from "$lib/utils";
   import { fade, fly, slide } from "svelte/transition";
-  import { Separator, Dialog } from "bits-ui";
+  import { Separator, Dialog, Tooltip } from "bits-ui";
+	import { genreIcons } from "$lib/utils";
 
   export let data: PageData;
 
@@ -35,7 +36,6 @@
     movie2 = await fetchMovie();
     nextMovie = await fetchMovie();
 
-    print
     state = "game";
   }
 
@@ -178,7 +178,39 @@
       </div>
 
       <!-- Actual content -->
-      <p class="flex-grow">yo wat up</p>
+      <div class="text-xl">
+        <p class="flex-grow flex items-center gap-3">
+          <!-- Movie genres -->
+          {#if movieInfo?.genres}
+            <span>Genres:</span>
+            <div class="flex items-center gap-2">
+              {#each movieInfo?.genres as genre}
+                {#if Object.keys(genreIcons).includes(genre.name)}
+                  <Tooltip.Root openDelay={0}>
+                    <Tooltip.Trigger class="cursor-default flex items-center">
+                      <iconify-icon icon={genreIcons[genre.name]}></iconify-icon>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content
+                      transition={fly}
+                      transitionConfig={{ y: -8, duration: 150 }}
+                      sideOffset={8}
+                    >
+                      <div class="bg-black">
+                        <Tooltip.Arrow class="border-l-2 border-t-2 border-white rounded-[4px]" size={12} />
+                      </div>
+                      <div class="flex justify-center items-center border-2 border-white py-2 px-4 bg-black rounded-md">
+                        {genre.name}
+                      </div>
+                    </Tooltip.Content>
+                  </Tooltip.Root>
+                {/if}
+              {/each}
+            </div>
+          {/if}
+
+          <!-- The movie plot -->
+        </p>
+      </div>
     </Dialog.Content>
   </Dialog.Portal>
 </Dialog.Root>

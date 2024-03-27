@@ -20,7 +20,7 @@ export const genreIcons = {
   "Documentary": "material-symbols:android-camera",
   "Drama": "material-symbols:comedy-mask-rounded",
   "Family": "material-symbols:family-restroom-rounded",
-  "Fantasy": "material-symbols:magic-button",
+  "Fantasy": "mingcute:crystal-ball-fill",
   "History": "material-symbols:history-rounded",
   "Horror": "mingcute:skull-fill",
   "Music": "mingcute:music-2-fill",
@@ -53,8 +53,14 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  genres: Genre[];
 
   rating: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
 
 export type GameMode = "budget" | "time" | "rating";
