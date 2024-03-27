@@ -3,6 +3,7 @@
   import { NumberFormatter, type Movie } from "$lib/utils";
   import type { PageData } from "./$types";
   import { slide } from "svelte/transition";
+  import { Separator } from "bits-ui";
 
   export let data: PageData;
 
@@ -67,23 +68,65 @@
 <!-- Game -->
 {:else if state === "game"}
   <main class="flex h-full w-full justify-between" transition:slide>
+    <!-- Poster 1 -->
     <img src="https://image.tmdb.org/t/p/original{movie1?.poster_path}" alt={movie1?.title} class="h-full">
 
-    <div class="flex flex-col items-center">
-      <h1 class="text-3xl font-medium font-impactt mt-8 mb-12">ROUND {round}</h1>
+    <div class="flex flex-col items-center justify-evenly w-full">
+      <!-- <h1 class="text-3xl font-medium font-impactt">ROUND {round}</h1> -->
 
-      {#if data.gameMode === "budget"}
-        <h2 class="flex flex-col items-center gap-3 justify-center text-4xl">
-          <span class="bg-imdb rounded-md px-3 py-1 text-black font-impactt flex items-center justify-center text-center gap-2 mx-4">
-            <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
-            <span>"{movie1?.title}"</span>
-          </span>
-          <span class="text-2xl">has a budget of</span>
-          <span class="bg-imdb rounded-md px-3 py-1 text-black font-impactt">${NumberFormatter.format(movie1?.budget || 0)}</span>
-        </h2>
-      {/if}
+      <!-- First movie info -->
+      <div class="flex flex-col items-center gap-3 justify-center">
+        <!-- Movie title -->
+        <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
+          <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
+          <span>{movie1?.title}</span>
+        </h3>
+
+        <!-- Budget mode -->
+        {#if data.gameMode === "budget"}
+          <h5 class="text-lg">has a budget of</h5>
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">${NumberFormatter.format(movie1?.budget || 0)}</h2>
+        {/if}
+      </div>
+
+      <div class="flex gap-4 items-center justify-center w-full px-8">
+        <Separator.Root class="h-[1px] flex-grow bg-white" />
+        <iconify-icon icon="bxs:camera-movie" class="text-3xl"></iconify-icon>
+        <Separator.Root class="h-[1px] flex-grow bg-white" />
+      </div>
+
+      <!-- Second movie -->
+      <div class="flex flex-col items-center gap-3 justify-center w-full">
+        <!-- Movie title -->
+        <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
+          <span>{movie2?.title}</span>
+          <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
+        </h3>
+
+        <!-- Budget mode -->
+        {#if data.gameMode === "budget"}
+          <h5 class="text-lg">has a</h5>
+
+          <div class="space-y-2 w-full px-8">
+            <button class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95">
+              <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              Higher
+              <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+            </button>
+
+            <button class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95">
+              <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              Lower
+              <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+            </button>
+          </div>
+
+          <h5 class="text-lg">budget</h5>
+        {/if}
+      </div>
     </div>
 
+    <!-- Poster 2 -->
     <img src="https://image.tmdb.org/t/p/original{movie2?.poster_path}" alt={movie2?.title} class="h-full">
   </main>
 {/if}
