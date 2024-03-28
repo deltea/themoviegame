@@ -44,6 +44,8 @@
   }
 
   function guessPick(value: "higher" | "lower") {
+    if (answerState) return;
+
     let movie1value: number;
     let movie2value: number;
 
