@@ -127,28 +127,25 @@
 <!-- Game -->
 {:else if state === "game"}
   <main class="flex h-full w-full justify-between" transition:slide>
-    <!-- Answer message -->
-    {#if answerState === "correct"}
-      <div
-        class="absolute rounded-full bg-imdb size-32 flex justify-center items-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-white"
-        in:fly={{ duration: answerDuration / 2, x: -1200, opacity: 100 }}
-        out:fly={{ duration: answerDuration / 2, x: 1200, opacity: 100 }}
-      >
-        <iconify-icon icon="mingcute:check-fill" class="text-6xl"></iconify-icon>
-      </div>
-    {:else if answerState === "incorrect"}
-      <div
-        class="absolute rounded-full bg-black size-32 flex justify-center items-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-white"
-        in:fly={{ duration: answerDuration / 2, x: -1200, opacity: 100 }}
-        out:fly={{ duration: answerDuration / 2, x: 1200, opacity: 100 }}
-      >
-        <iconify-icon icon="material-symbols:close-rounded" class="text-6xl"></iconify-icon>
-      </div>
-    {/if}
-
     <!-- Poster 1 -->
-    <div class="w-full relative">
+    <div class="w-full h-full relative">
       <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="h-full">
+
+      <!-- Answer overlay -->
+      {#if answerState}
+        <div
+          class="absolute w-full h-full top-0 left-0 bg-imdb flex justify-center items-center"
+          transition:slide={{ duration: answerDuration / 2, axis: "y" }}
+        >
+          {#if answerState === "correct"}
+            <iconify-icon icon="mingcute:check-fill" class="text-6xl text-black"></iconify-icon>
+          {:else if answerState === "incorrect"}
+            <iconify-icon icon="mingcute:close-fill" class="text-6xl text-black"></iconify-icon>
+          {/if}
+        </div>
+      {/if}
+
+      <!-- Info button -->
       <button
         on:click={() => setMovieInfo(movie1)}
         class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
@@ -219,8 +216,24 @@
     </div>
 
     <!-- Poster 2 -->
-    <div class="w-full relative">
+    <div class="w-full h-full relative">
       <img src="https://image.tmdb.org/t/p/original{movie2.poster_path}" alt={movie2.title} class="h-full">
+
+      <!-- Answer overlay -->
+      {#if answerState}
+        <div
+          class="absolute w-full h-full top-0 left-0 bg-imdb flex justify-center items-center"
+          transition:slide={{ duration: answerDuration / 2, axis: "y" }}
+        >
+          {#if answerState === "correct"}
+            <iconify-icon icon="mingcute:check-fill" class="text-6xl text-black"></iconify-icon>
+          {:else if answerState === "incorrect"}
+            <iconify-icon icon="mingcute:close-fill" class="text-6xl text-black"></iconify-icon>
+          {/if}
+        </div>
+      {/if}
+
+      <!-- Info button -->
       <button
         on:click={() => setMovieInfo(movie2)}
         class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
