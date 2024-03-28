@@ -49,7 +49,7 @@ export interface Movie {
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: Date;
+  release_date: string;
   revenue: number;
   runtime: number;
   status: string;

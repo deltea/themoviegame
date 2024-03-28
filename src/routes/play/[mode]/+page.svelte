@@ -14,10 +14,10 @@
 
   const answerDuration = 1000;
 
-  let movie1: Movie | null;
-  let movie2: Movie | null;
-  let nextMovie: Movie | null;
-  let movieInfo: Movie | null;
+  let movie1: Movie;
+  let movie2: Movie;
+  let nextMovie: Movie;
+  let movieInfo: Movie;
 
   let round = 1;
   let state: "load" | "game" | "end" = "load";
@@ -43,9 +43,38 @@
     state = "game";
   }
 
+  function guessPick(value: "higher" | "lower") {
+    let movie1value: number;
+    let movie2value: number;
+
+    switch (data.gameMode) {
+      case "budget":
+        movie1value = movie1.budget;
+        movie2value = movie2.budget;
+        break;
+      case "rating":
+        movie1value = movie1.rating;
+        movie2value = movie2.rating;
+        break;
+      case "time":
+        movie1value = new Date(movie1.release_date).getTime();
+        movie2value = new Date(movie2.release_date).getTime();
+        break;
+    }
+
+    if (value === "higher") {
+      if (movie2value > movie1value) correct();
+      else incorrect();
+    } else {
+      if (movie2value < movie1value) correct();
+      else incorrect();
+    }
+  }
+
   async function correct() {
     round++;
     answerState = "correct";
+    console.log("correct");
 
     setTimeout(async () => {
       movie1 = movie2;
@@ -55,7 +84,16 @@
     }, answerDuration);
   }
 
-  function setMovieInfo(movie: Movie | null) {
+  function incorrect() {
+    answerState = "incorrect";
+
+    setTimeout(() => {
+      state = "end";
+    }, answerDuration);
+    console.log("incorrect");
+  }
+
+  function setMovieInfo(movie: Movie) {
     infoDialogOpen = true;
     movieInfo = movie;
   }
@@ -76,16 +114,39 @@
 
 <!-- Game over -->
 {:else if state === "end"}
-  <main class="h-full bg-white" transition:slide>
-    <p>Game over!</p>
+  <main class="h-full bg-black flex flex-col justify-center items-center gap-2" transition:slide>
+    <h1 class="bg-imdb px-1.5 py-0.5 rounded-md text-black font-impactt text-4xl">GAME OVER!</h1>
+    <h2 class="text-2xl">
+      You made it to
+      <span class="border-2 border-white rounded-lg px-1.5 py-0.5 ">ROUND {round}</span>
+    </h2>
   </main>
 
 <!-- Game -->
 {:else if state === "game"}
   <main class="flex h-full w-full justify-between" transition:slide>
+    <!-- Answer message -->
+    {#if answerState === "correct"}
+      <div
+        class="absolute rounded-full bg-imdb size-32 flex justify-center items-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-white"
+        in:fly={{ duration: answerDuration / 2, x: -1200, opacity: 100 }}
+        out:fly={{ duration: answerDuration / 2, x: 1200, opacity: 100 }}
+      >
+        <iconify-icon icon="mingcute:check-fill" class="text-6xl"></iconify-icon>
+      </div>
+    {:else if answerState === "incorrect"}
+      <div
+        class="absolute rounded-full bg-black size-32 flex justify-center items-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 border-2 border-white"
+        in:fly={{ duration: answerDuration / 2, x: -1200, opacity: 100 }}
+        out:fly={{ duration: answerDuration / 2, x: 1200, opacity: 100 }}
+      >
+        <iconify-icon icon="material-symbols:close-rounded" class="text-6xl"></iconify-icon>
+      </div>
+    {/if}
+
     <!-- Poster 1 -->
     <div class="w-full relative">
-      <img src="https://image.tmdb.org/t/p/original{movie1?.poster_path}" alt={movie1?.title} class="h-full">
+      <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="h-full">
       <button
         on:click={() => setMovieInfo(movie1)}
         class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
@@ -100,13 +161,13 @@
         <!-- Movie title -->
         <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
           <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
-          <span>{movie1?.title}</span>
+          <span>{movie1.title}</span>
         </h3>
 
         <!-- Budget mode -->
         {#if data.gameMode === "budget"}
           <h5 class="text-lg">has a budget of</h5>
-          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">${NumberFormatter.format(movie1?.budget || 0)}</h2>
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">${NumberFormatter.format(movie1.budget)}</h2>
         {/if}
       </div>
 
@@ -122,7 +183,7 @@
       <div class="flex flex-col items-center gap-2 justify-center w-full">
         <!-- Movie title -->
         <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
-          <span>{movie2?.title}</span>
+          <span>{movie2.title}</span>
           <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
         </h3>
 
@@ -131,13 +192,19 @@
           <h5 class="text-lg">has a</h5>
 
           <div class="space-y-2 w-full px-8">
-            <button class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95">
+            <!-- Higher button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("higher")}>
               <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
               Higher
               <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
             </button>
 
-            <button class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95">
+            <!-- Lower button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("lower")}>
               <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
               Lower
               <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
@@ -151,7 +218,7 @@
 
     <!-- Poster 2 -->
     <div class="w-full relative">
-      <img src="https://image.tmdb.org/t/p/original{movie2?.poster_path}" alt={movie2?.title} class="h-full">
+      <img src="https://image.tmdb.org/t/p/original{movie2.poster_path}" alt={movie2.title} class="h-full">
       <button
         on:click={() => setMovieInfo(movie2)}
         class="absolute left-8 bottom-6 hover:scale-110 active:scale-90 duration-150"
@@ -178,7 +245,7 @@
     >
       <!-- Top Bar -->
       <div class="flex justify-between items-center">
-        <h1 class="font-impactt text-2xl">About "{movieInfo?.title}"</h1>
+        <h1 class="font-impactt text-2xl">About "{movieInfo.title}"</h1>
         <Dialog.Close class="right-6 top-6 flex justify-center items-center">
           <iconify-icon icon="mingcute:close-fill" class="text-2xl"></iconify-icon>
         </Dialog.Close>
@@ -187,14 +254,14 @@
       <!-- Actual content -->
       <div class="text-xl">
         <!-- The movie genres -->
-        {#if movieInfo?.genres}
+        {#if movieInfo.genres}
           <div class="flex-grow flex items-center">
             <h2 class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="bx:camera-movie" class="text-xl"></iconify-icon>
               Genres:
             </h2>
             <div class="flex items-center gap-2">
-              {#each movieInfo?.genres as genre}
+              {#each movieInfo.genres as genre}
                 {#if Object.keys(genreIcons).includes(genre.name)}
                   <Tooltip.Root openDelay={0}>
                     <Tooltip.Trigger class="cursor-default flex items-center">
@@ -220,7 +287,7 @@
         {/if}
 
         <!-- The release date -->
-        {#if movieInfo?.release_date}
+        {#if movieInfo.release_date}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="material-symbols:calendar-clock-outline-rounded" class="text-xl"></iconify-icon>
@@ -231,7 +298,7 @@
         {/if}
 
         <!-- The budget -->
-        {#if movieInfo?.budget}
+        {#if movieInfo.budget}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="mingcute:pig-money-line" class="text-xl"></iconify-icon>
@@ -248,7 +315,7 @@
         {/if}
 
         <!-- The runtime -->
-        {#if movieInfo?.runtime}
+        {#if movieInfo.runtime}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="tabler:ruler-measure" class="text-xl"></iconify-icon>
@@ -259,7 +326,7 @@
         {/if}
 
         <!-- The rating -->
-        {#if movieInfo?.rating}
+        {#if movieInfo.rating}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="material-symbols:star-outline-rounded" class="text-xl"></iconify-icon>
@@ -270,13 +337,13 @@
         {/if}
 
         <!-- The movie plot -->
-        {#if movieInfo?.overview}
+        {#if movieInfo.overview}
           <div class="">
             <h2 class="font-semibold flex items-center gap-1.5">
               <iconify-icon icon="mingcute:book-6-line" class="text-xl"></iconify-icon>
               Overview:
             </h2>
-            <p>{movieInfo?.overview}</p>
+            <p>{movieInfo.overview}</p>
           </div>
         {/if}
       </div>

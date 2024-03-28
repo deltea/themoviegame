@@ -12,12 +12,13 @@ export const GET: RequestHandler = async () => {
 
   while (!movie || movie.budget == 0 || !rating) {
     // Pick a random valid movie in the page
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${popular_movies.results[random(0, 20)].id}?api_key=${TMDB_API_KEY}&append_to_response=external_ids,watch/providers`);
+    const random_id = popular_movies.results[random(0, 20)].id;
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${random_id}?api_key=${TMDB_API_KEY}&append_to_response=external_ids,watch/providers`);
     movie = await response.json()
     console.log(movie);
 
     // Get IMDB rating using OMDB
-    const omdb_response = await fetch(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie.imdb_id}`);
+    const omdb_response = await fetch(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie?.imdb_id}`);
     rating = +(await omdb_response.json())["imdbRating"];
   }
 
