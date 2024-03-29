@@ -227,7 +227,7 @@
           </h2>
 
         {:else if data.gameMode === "time"}
-          <h5 class="text-lg">was released in</h5>
+          <h5 class="text-lg">was released in the year</h5>
           <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
             {new Date(movie1.release_date).getFullYear()}
           </h2>
