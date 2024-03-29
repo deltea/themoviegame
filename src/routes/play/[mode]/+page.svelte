@@ -3,7 +3,6 @@
 	import { onMount } from "svelte";
   import { fade, fly, slide } from "svelte/transition";
   import { Separator, Dialog, Tooltip } from "bits-ui";
-  import { goto } from "$app/navigation";
   import {
     DateFormatter,
     NumberFormatter,
@@ -14,10 +13,11 @@
   export let data: PageData;
 
   const answerDuration = 1000;
+  const god_mode = true;
 
   let movie1: Movie;
   let movie2: Movie;
-  let nextMovie: Movie;
+  let movieNext: Movie;
   let movieInfo: Movie;
 
   let round = 1;
@@ -39,7 +39,9 @@
   async function setMovies() {
     movie1 = await fetchMovie();
     movie2 = await fetchMovie();
-    nextMovie = await fetchMovie();
+    while (checkSameStat(movie1, movie2)) movie2 = await fetchMovie();
+    movieNext = await fetchMovie();
+    while (checkSameStat(movie2, movieNext)) movieNext = await fetchMovie();
 
     state = "game";
   }
@@ -81,8 +83,10 @@
 
     setTimeout(async () => {
       movie1 = movie2;
-      movie2 = nextMovie;
-      nextMovie = await fetchMovie();
+      movie2 = movieNext;
+      movieNext = await fetchMovie();
+      while (checkSameStat(movie2, movieNext)) movieNext = await fetchMovie();
+
       answerState = null;
     }, answerDuration);
   }
@@ -99,6 +103,14 @@
   function setMovieInfo(movie: Movie) {
     infoDialogOpen = true;
     movieInfo = movie;
+  }
+
+  function checkSameStat(movie1: Movie, movie2: Movie) {
+    switch (data.gameMode) {
+      case "budget": return movie1.budget === movie2.budget;
+      case "rating": return movie1.rating === movie2.rating
+      case "time": return new Date(movie1.release_date).getFullYear() === new Date(movie2.release_date).getFullYear()
+    }
   }
 
   onMount(() => {
@@ -465,7 +477,7 @@
               Release Date:
             </span>
             <span>
-              {#if data.gameMode === "time"}
+              {#if data.gameMode === "time" && !god_mode}
                 [REDACTED ON RELEASE DATE MODE]
               {:else}
                 {DateFormatter.format(new Date(movieInfo.release_date))}
@@ -482,7 +494,7 @@
               Budget:
             </span>
             <span>
-              {#if data.gameMode === "budget"}
+              {#if data.gameMode === "budget" && !god_mode}
                 [REDACTED ON BUDGET MODE]
               {:else}
                 ${NumberFormatter.format(movieInfo.budget)}
@@ -510,7 +522,7 @@
               Rating:
             </span>
             <span>
-              {#if data.gameMode === "rating"}
+              {#if data.gameMode === "rating" && !god_mode}
                 [REDACTED ON RATING MODE]
               {:else}
                 {movieInfo.rating}
