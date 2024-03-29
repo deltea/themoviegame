@@ -193,7 +193,22 @@
         <!-- Budget mode -->
         {#if data.gameMode === "budget"}
           <h5 class="text-lg">has a budget of</h5>
-          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">${NumberFormatter.format(movie1.budget)}</h2>
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
+            ${NumberFormatter.format(movie1.budget)}
+          </h2>
+
+        <!-- Rating mode -->
+        {:else if data.gameMode === "rating"}
+          <h5 class="text-lg">has a rating of</h5>
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
+            {movie1.rating}
+          </h2>
+
+        {:else if data.gameMode === "time"}
+          <h5 class="text-lg">was released in</h5>
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
+            {new Date(movie1.release_date).getFullYear()}
+          </h2>
         {/if}
       </div>
 
@@ -222,22 +237,110 @@
             <button
               class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
               on:click={() => guessPick("higher")}>
-              <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
               Higher
-              <iconify-icon icon="material-symbols:arrow-upward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
             </button>
 
             <!-- Lower button -->
             <button
               class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
               on:click={() => guessPick("lower")}>
-              <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
               Lower
-              <iconify-icon icon="material-symbols:arrow-downward-alt-rounded" class="scale-0 group-hover:scale-100 duration-150"></iconify-icon>
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
             </button>
           </div>
 
           <h5 class="text-lg">budget</h5>
+
+        <!-- Rating mode -->
+        {:else if data.gameMode === "rating"}
+          <h5 class="text-lg">has a</h5>
+
+          <div class="space-y-2 w-full px-8">
+            <!-- Higher button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("higher")}>
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+              Higher
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+            </button>
+
+            <!-- Lower button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("lower")}>
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+              Lower
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+            </button>
+          </div>
+
+          <h5 class="text-lg">rating</h5>
+
+        <!-- Time mode -->
+        {:else if data.gameMode === "time"}
+          <h5 class="text-lg">is</h5>
+
+          <div class="space-y-2 w-full px-8">
+            <!-- Higher button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("higher")}>
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+              Newer
+              <iconify-icon
+                icon="material-symbols:arrow-upward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+            </button>
+
+            <!-- Lower button -->
+            <button
+              class="border-2 border-imdb bg-black hover:bg-imdb duration-150 rounded-lg px-3 py-1 text-imdb hover:text-black font-impactt text-4xl w-full flex items-center justify-center gap-2 group hover:scale-105 active:scale-95"
+              on:click={() => guessPick("lower")}>
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+              Older
+              <iconify-icon
+                icon="material-symbols:arrow-downward-alt-rounded"
+                class="scale-0 group-hover:scale-100 duration-150"
+              ></iconify-icon>
+            </button>
+          </div>
+
+          <!-- <h5 class="text-lg">budget</h5> -->
         {/if}
       </div>
     </div>
