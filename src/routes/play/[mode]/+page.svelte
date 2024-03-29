@@ -153,7 +153,15 @@
 
 <!-- Game -->
 {:else if state === "game"}
-  <main class="flex h-full w-full justify-between" transition:slide>
+  <main class="flex h-full w-full justify-between relative" transition:slide>
+    <!-- Home button -->
+    <a
+      href="/"
+      class="text-white bg-transparent border-2 border-white rounded-full flex justify-end items-end size-32 absolute -left-16 -top-16 duration-150 hover:bg-white z-50 hover:text-black"
+    >
+      <iconify-icon icon="mingcute:home-7-fill" class="text-2xl mr-6 mb-6"></iconify-icon>
+    </a>
+
     <!-- Poster 1 -->
     <div class="w-full h-full relative">
       <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="h-full">
