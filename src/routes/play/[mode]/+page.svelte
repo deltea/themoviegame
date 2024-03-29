@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
   import { fade, fly, slide } from "svelte/transition";
   import { Separator, Dialog, Tooltip } from "bits-ui";
+  import { goto } from "$app/navigation";
   import {
     DateFormatter,
     NumberFormatter,
@@ -116,12 +117,38 @@
 
 <!-- Game over -->
 {:else if state === "end"}
-  <main class="h-full bg-black flex flex-col justify-center items-center gap-2" transition:slide>
+  <main class="h-full bg-black flex flex-col justify-center items-center gap-8" transition:slide>
     <h1 class="bg-imdb px-1.5 py-0.5 rounded-md text-black font-impactt text-4xl">GAME OVER!</h1>
     <h2 class="text-2xl">
       You made it to
       <span class="border-2 border-white rounded-lg px-1.5 py-0.5 ">ROUND {round}</span>
     </h2>
+    <div class="flex justify-center items-center gap-6">
+      <a
+        href="/"
+        class="flex justify-center items-center size-24 bg-imdb rounded-3xl duration-150 hover:scale-110 active:scale-95">
+        <iconify-icon
+          icon="mingcute:home-7-fill"
+          class="text-6xl text-white"
+        ></iconify-icon>
+      </a>
+      <button
+        on:click={() => location.reload()}
+        class="flex justify-center items-center size-32 bg-imdb rounded-3xl duration-150 hover:scale-110 active:scale-95">
+        <iconify-icon
+          icon="mingcute:refresh-4-fill"
+          class="text-6xl text-white duration-200 group-hover:rotate-180"
+        ></iconify-icon>
+      </button>
+      <button
+        on:click={() => (console.log("leaderboard"))}
+        class="flex justify-center items-center size-24 bg-imdb rounded-3xl duration-150 hover:scale-110 active:scale-95">
+        <iconify-icon
+          icon="mingcute:trophy-fill"
+          class="text-6xl text-white duration-200"
+        ></iconify-icon>
+      </button>
+    </div>
   </main>
 
 <!-- Game -->

@@ -20,7 +20,7 @@
   </div>
 
   <!-- Game mode selection -->
-  <RadioGroup.Root class="flex items-center justify-center gap-8" bind:value={gameMode}>
+  <RadioGroup.Root class="flex items-center justify-center gap-8 w-full" bind:value={gameMode}>
     <RadioGroup.Item
       value="budget"
       id="budget"
