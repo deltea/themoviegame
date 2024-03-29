@@ -464,7 +464,13 @@
               <iconify-icon icon="material-symbols:calendar-clock-outline-rounded" class="text-xl"></iconify-icon>
               Release Date:
             </span>
-            <span>{DateFormatter.format(new Date(movieInfo.release_date))}</span>
+            <span>
+              {#if data.gameMode === "time"}
+                [REDACTED ON RELEASE DATE MODE]
+              {:else}
+                {DateFormatter.format(new Date(movieInfo.release_date))}
+              {/if}
+            </span>
           </p>
         {/if}
 
