@@ -208,8 +208,22 @@
         <!-- Rating mode -->
         {:else if data.gameMode === "rating"}
           <h5 class="text-lg">has a rating of</h5>
-          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
-            {movie1.rating}
+          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt flex items-center text-3xl">
+            <div class="relative w-full h-full">
+              <div
+                class="absolute h-full text-clip whitespace-nowrap overflow-hidden"
+                style:width="{movie1.rating / 10 * 300}px"
+              >
+                {#each [0,1,2,3,4,5,6,7,8,9] as i}
+                  <iconify-icon icon="mingcute:star-fill" class="absolute" style:left="{i * 30}px"></iconify-icon>
+                {/each}
+              </div>
+            </div>
+            <div class="flex w-full h-full justify-center items-center">
+              {#each [0,1,2,3,4,5,6,7,8,9] as _}
+                <iconify-icon icon="mingcute:star-line"></iconify-icon>
+              {/each}
+            </div>
           </h2>
 
         {:else if data.gameMode === "time"}
@@ -414,27 +428,31 @@
               Genres:
             </h2>
             <div class="flex items-center gap-2">
-              {#each movieInfo.genres as genre}
-                {#if Object.keys(genreIcons).includes(genre.name)}
-                  <Tooltip.Root openDelay={0}>
-                    <Tooltip.Trigger class="cursor-default flex items-center">
-                      <iconify-icon icon={genreIcons[genre.name]}></iconify-icon>
-                    </Tooltip.Trigger>
-                    <Tooltip.Content
-                      transition={fly}
-                      transitionConfig={{ y: -8, duration: 150 }}
-                      sideOffset={8}
-                    >
-                      <div class="bg-black">
-                        <Tooltip.Arrow class="border-l-2 border-t-2 border-white rounded-[4px]" size={12} />
-                      </div>
-                      <div class="flex justify-center items-center border-2 border-white py-2 px-4 bg-black rounded-md">
-                        {genre.name}
-                      </div>
-                    </Tooltip.Content>
-                  </Tooltip.Root>
-                {/if}
-              {/each}
+              {#if movieInfo.genres.length > 0}
+                {#each movieInfo.genres as genre}
+                  {#if Object.keys(genreIcons).includes(genre.name)}
+                    <Tooltip.Root openDelay={0}>
+                      <Tooltip.Trigger class="cursor-default flex items-center">
+                        <iconify-icon icon={genreIcons[genre.name]}></iconify-icon>
+                      </Tooltip.Trigger>
+                      <Tooltip.Content
+                        transition={fly}
+                        transitionConfig={{ y: -8, duration: 150 }}
+                        sideOffset={8}
+                      >
+                        <div class="bg-black">
+                          <Tooltip.Arrow class="border-l-2 border-t-2 border-white rounded-[4px]" size={12} />
+                        </div>
+                        <div class="flex justify-center items-center border-2 border-white py-2 px-4 bg-black rounded-md">
+                          {genre.name}
+                        </div>
+                      </Tooltip.Content>
+                    </Tooltip.Root>
+                  {/if}
+                {/each}
+              {:else}
+                None
+              {/if}
             </div>
           </div>
         {/if}
@@ -459,7 +477,7 @@
             </span>
             <span>
               {#if data.gameMode === "budget"}
-                [REDACTED]
+                [REDACTED ON BUDGET MODE]
               {:else}
                 ${NumberFormatter.format(movieInfo.budget)}
               {/if}
@@ -482,10 +500,16 @@
         {#if movieInfo.rating}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
-              <iconify-icon icon="material-symbols:star-outline-rounded" class="text-xl"></iconify-icon>
+              <iconify-icon icon="mingcute:star-line" class="text-xl"></iconify-icon>
               Rating:
             </span>
-            <span>{movieInfo.rating}</span>
+            <span>
+              {#if data.gameMode === "rating"}
+                [REDACTED ON RATING MODE]
+              {:else}
+                {movieInfo.rating}
+              {/if}
+            </span>
           </p>
         {/if}
 
