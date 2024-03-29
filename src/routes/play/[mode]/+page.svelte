@@ -109,7 +109,7 @@
 <!-- Loading movies -->
 {#if state === "load"}
   <main class="h-full bg-imdb flex justify-center items-center" transition:slide>
-    <h1 class="text-4xl font-impactt flex items-center gap-2">
+    <h1 class="text-5xl font-impactt flex items-center gap-2">
       LOADING MOVIES...
       <iconify-icon icon="humbleicons:spinner-earring" class="animate-spin"></iconify-icon>
     </h1>
@@ -118,7 +118,7 @@
 <!-- Game over -->
 {:else if state === "end"}
   <main class="h-full bg-black flex flex-col justify-center items-center gap-8" transition:slide>
-    <h1 class="bg-imdb px-1.5 py-0.5 rounded-md text-black font-impactt text-4xl">GAME OVER!</h1>
+    <h1 class="bg-imdb px-2.5 py-1 rounded-md text-black font-impactt text-5xl">GAME OVER!</h1>
     <h2 class="text-2xl">
       You made it to
       <span class="border-2 border-white rounded-lg px-1.5 py-0.5 ">ROUND {round}</span>
