@@ -9,7 +9,7 @@ export function random(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min)
 }
 
-export function formatLeaderboard(data: unknown[]) {
+export function formatLeaderboard(data: unknown[]): Leaderboard {
   const result = [];
   for (let i = 0; i < data.length; i++) {
     const element = data[i];
@@ -22,7 +22,7 @@ export function formatLeaderboard(data: unknown[]) {
     }
   }
 
-  return result;
+  return result as Leaderboard;
 }
 
 export const NumberFormatter = new Intl.NumberFormat();
@@ -52,6 +52,11 @@ export const genreIcons: {
   "War": "mingcute:tank-fill",
   "Western": "mdi:account-cowboy-hat",
 }
+
+export type Leaderboard = {
+  username: string,
+  score: number,
+}[];
 
 export interface Movie {
   adult: boolean;
