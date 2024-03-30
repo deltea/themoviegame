@@ -53,6 +53,8 @@ export const genreIcons: {
   "Western": "mdi:account-cowboy-hat",
 }
 
+export type AnswerState = "correct" | "incorrect" | null;
+
 export type Leaderboard = {
   username: string,
   score: number,

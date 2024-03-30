@@ -17,7 +17,7 @@ export const GET: RequestHandler = async () => {
     const random_id = popular_movies.results[random(0, 20)].id;
     const response = await fetch(`https://api.themoviedb.org/3/movie/${random_id}?api_key=${TMDB_API_KEY}&append_to_response=external_ids,watch/providers`);
     movie = await response.json()
-    console.log(movie);
+    // console.log(movie);
 
     // Get IMDB rating using OMDB
     const omdb_response = await fetch(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movie?.imdb_id}`);
