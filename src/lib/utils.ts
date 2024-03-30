@@ -9,6 +9,22 @@ export function random(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min)
 }
 
+export function formatLeaderboard(data: unknown[]) {
+  const result = [];
+  for (let i = 0; i < data.length; i++) {
+    const element = data[i];
+    if (i % 2 === 0) {
+      // Element is username
+      result.push({ username: element, score: data[i + 1] });
+    } else {
+      // Element is score
+      continue;
+    }
+  }
+
+  return result;
+}
+
 export const NumberFormatter = new Intl.NumberFormat();
 export const DateFormatter = new Intl.DateTimeFormat("en-US", {
   dateStyle: "long"

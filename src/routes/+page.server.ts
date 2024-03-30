@@ -1,6 +1,7 @@
 import type { PageServerLoad } from "./$types";
 import { KV_REST_API_TOKEN, KV_REST_API_URL } from "$env/static/private";
 import { createClient } from "@vercel/kv";
+import { formatLeaderboard } from "$lib/utils";
 
 const kv = createClient({
   url: KV_REST_API_URL,
@@ -13,9 +14,13 @@ const zrange_opts = {
 }
 
 export const load = (async () => {
+  const budget_leaderboard = await kv.zrange("budget_leaderboard", 0, 10, zrange_opts);
+  const rating_leaderboard = await kv.zrange("rating_leaderboard", 0, 10, zrange_opts);
+  const time_leaderboard = await kv.zrange("time_leaderboard", 0, 10, zrange_opts);
+
   return {
-    budget_mode_leaderboard: await kv.zrange("budget_leaderboard", 0, 10, zrange_opts),
-    rating_mode_leaderboard: await kv.zrange("rating_leaderboard", 0, 10, zrange_opts),
-    time_mode_leaderboard: await kv.zrange("time_leaderboard", 0, 10, zrange_opts),
+    budget_leaderboard: formatLeaderboard(budget_leaderboard),
+    rating_leaderboard: formatLeaderboard(rating_leaderboard),
+    time_leaderboard: formatLeaderboard(time_leaderboard),
   }
 }) satisfies PageServerLoad;
