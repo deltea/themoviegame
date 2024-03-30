@@ -1,8 +1,13 @@
 <script lang="ts">
+  import type { PageData } from "./$types";
 	import type { GameMode } from "$lib/utils";
   import { RadioGroup } from "bits-ui";
 
+  export let data: PageData;
+
   let gameMode: GameMode = "rating";
+
+  console.log(data);
 </script>
 
 <main class="h-full flex flex-col justify-center items-center gap-16">

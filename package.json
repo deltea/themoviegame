@@ -29,6 +29,7 @@
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.0.17",
 		"@fontsource-variable/roboto-condensed": "^5.0.2",
+		"@vercel/kv": "^1.0.1",
 		"autoprefixer": "^10.4.19",
 		"bits-ui": "^0.21.0",
 		"clsx": "^2.1.0",
