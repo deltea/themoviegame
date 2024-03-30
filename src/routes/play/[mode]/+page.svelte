@@ -175,7 +175,7 @@
     </a>
 
     <!-- Poster 1 -->
-    <div class="w-full h-full relative">
+    <div class="h-full relative aspect-[2/3]">
       <img src="https://image.tmdb.org/t/p/original{movie1.poster_path}" alt={movie1.title} class="h-full">
 
       <!-- Answer overlay -->
@@ -201,7 +201,7 @@
       </button>
     </div>
 
-    <div class="flex flex-col items-center justify-evenly w-full">
+    <div class="flex flex-col items-center justify-evenly flex-grow">
       <!-- First movie info -->
       <div class="flex flex-col items-center gap-2 justify-center">
         <!-- Movie title -->
@@ -373,14 +373,12 @@
               ></iconify-icon>
             </button>
           </div>
-
-          <!-- <h5 class="text-lg">budget</h5> -->
         {/if}
       </div>
     </div>
 
     <!-- Poster 2 -->
-    <div class="w-full h-full relative">
+    <div class="h-full relative aspect-[2/3]">
       <img src="https://image.tmdb.org/t/p/original{movie2.poster_path}" alt={movie2.title} class="h-full">
 
       <!-- Answer overlay -->

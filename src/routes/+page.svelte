@@ -89,7 +89,6 @@
 
   <!-- Leaderboard -->
   <div class="h-screen bg-black text-white flex justify-center items-center">
-    <!-- <h1 class="font-impactt text-4xl">YO whats up</h1> -->
     <Tabs.Root value="rating" class="p-8 pb-12 h-full w-full flex">
       <Tabs.Content value="rating" class="border-2 border-white rounded-2xl p-6 flex-grow z-10 bg-black">
         <h1 class="font-impactt text-3xl text-center border-b-2 border-white w-full pb-4">
