@@ -13,7 +13,7 @@
   export let data: PageData;
 
   const answerDuration = 1000;
-  const god_mode = true;
+  const god_mode = false;
 
   let movie1: Movie;
   let movie2: Movie;
