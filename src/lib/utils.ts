@@ -1,3 +1,4 @@
+import { browser } from "$app/environment";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -23,6 +24,12 @@ export function formatLeaderboard(data: unknown[]): Leaderboard {
   }
 
   return result as Leaderboard;
+}
+
+export function localUsername(newUsername: string = "") {
+  if (!browser) return;
+  if (newUsername) localStorage.setItem("username", newUsername);
+  return localStorage.getItem("username") || "";
 }
 
 export const NumberFormatter = new Intl.NumberFormat();

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-	import type { GameMode } from "$lib/utils";
-  import { RadioGroup, Tabs } from "bits-ui";
+	import { localUsername, type GameMode } from "$lib/utils";
+  import { Tabs } from "bits-ui";
 
   import Title from "$lib/components/Title.svelte";
   import LeaderboardContent from "$lib/components/LeaderboardContent.svelte";
@@ -11,8 +11,7 @@
   export let data: PageData;
 
   let gameMode: GameMode = "rating";
-
-  console.log(data);
+  let username = localUsername();
 </script>
 
 <main class="h-full w-full overflow-y-auto">
@@ -47,39 +46,58 @@
   </div>
 
   <!-- Leaderboard -->
-  <div class="h-screen bg-black text-white flex justify-center items-center">
-    <Tabs.Root value="rating" class="p-8 pb-12 h-full w-full flex">
-      <LeaderboardContent leaderboard={data.rating_leaderboard} value="rating">
-        Rating Mode Leaderboard
-      </LeaderboardContent>
-      <LeaderboardContent leaderboard={data.budget_leaderboard} value="budget">
-        Budget Mode Leaderboard
-      </LeaderboardContent>
-      <LeaderboardContent leaderboard={data.time_leaderboard} value="time">
-        Time Mode Leaderboard
-      </LeaderboardContent>
+  <div class="h-screen w-full bg-black text-white flex justify-center items-center">
+    <div class="w-96 flex flex-col justify-center items-center h-full py-20 gap-4">
+      <Tabs.Root value="rating" class="h-full flex flex-grow">
+        <LeaderboardContent leaderboard={data.rating_leaderboard} value="rating">
+          Rating Mode Leaderboard
+        </LeaderboardContent>
+        <LeaderboardContent leaderboard={data.budget_leaderboard} value="budget">
+          Budget Mode Leaderboard
+        </LeaderboardContent>
+        <LeaderboardContent leaderboard={data.time_leaderboard} value="time">
+          Time Mode Leaderboard
+        </LeaderboardContent>
+        <Tabs.List class="flex flex-col mt-4 gap-2">
+          <Tabs.Trigger
+            value="rating"
+            class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
+          >
+            Rating Mode
+          </Tabs.Trigger>
+          <Tabs.Trigger
+            value="budget"
+            class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
+          >
+            Budget Mode
+          </Tabs.Trigger>
+          <Tabs.Trigger
+            value="time"
+            class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
+          >
+            Time Mode
+          </Tabs.Trigger>
+        </Tabs.List>
+      </Tabs.Root>
 
-      <Tabs.List class="flex flex-col mt-4 gap-2">
-        <Tabs.Trigger
-          value="rating"
-          class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
+      <form
+        on:submit|preventDefault={() => localUsername(username)}
+        class="py6 flex justify-center gap-2 items-center text-white text-xl"
+      >
+        <input
+          type="text"
+          bind:value={username}
+          placeholder="Username"
+          class="outline-none rounded-lg border-2 border-white focus:border-imdb duration-150 bg-black py-2 px-3 placeholder:text-imdb"
+        />
+        <button
+          class="px-4 py-2 bg border-2 border-imdb duration-150 hover:scale-105 active:scale-95 hover:text-black font-impactt flex items-center gap-1 rounded-lg bg-black hover:bg-imdb text-imdb"
         >
-          Rating Mode
-        </Tabs.Trigger>
-        <Tabs.Trigger
-          value="budget"
-          class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
-        >
-          Budget Mode
-        </Tabs.Trigger>
-        <Tabs.Trigger
-          value="time"
-          class="py-4 px-6 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg"
-        >
-          Time Mode
-        </Tabs.Trigger>
-      </Tabs.List>
-    </Tabs.Root>
+          <iconify-icon icon="mingcute:save-2-fill"></iconify-icon>
+          Save
+        </button>
+      </form>
+    </div>
   </div>
 </main>
 
