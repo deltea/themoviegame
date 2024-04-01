@@ -29,6 +29,7 @@
   let state: "load" | "game" | "end" = "load";
   let answerState: AnswerState = null;
   let infoDialogOpen = false;
+  let highScore = false;
 
   async function fetchMovie() {
     const response = await fetch("/api/random-movie", {
@@ -96,8 +97,9 @@
 
   function incorrect() {
     answerState = "incorrect";
-    if (round > (Number(localScore()) || 0)) {
+    if (round > (Number(localScore(data.gameMode)) || 0)) {
       updateScore();
+      highScore = true;
     }
 
     setTimeout(() => {
@@ -120,8 +122,8 @@
 
   async function updateScore() {
     if (!localUsername()) return;
-  
-    localScore(round);
+
+    localScore(data.gameMode, round);
     const response = await fetch("/api/leaderboard", {
       method: "POST",
       body: JSON.stringify({
@@ -156,6 +158,9 @@
       You made it to
       <span class="border-2 border-white rounded-lg px-1.5 py-0.5 ">ROUND {round}</span>
     </h2>
+    {#if highScore}
+      <h2 class="text-imdb text-2xl">You beat your high score!</h2>
+    {/if}
     <div class="flex justify-center items-center gap-6">
       <!-- Home -->
       <a

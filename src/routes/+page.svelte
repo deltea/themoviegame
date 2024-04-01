@@ -27,7 +27,9 @@
         body: JSON.stringify({
           username,
           oldUsername: localUsername(),
-          score: localScore() || 0,
+          rating_score: localScore("rating") || 0,
+          budget_score: localScore("budget") || 0,
+          time_score: localScore("time") || 0,
         }),
         headers: {
           "Content-Type": "application/json",

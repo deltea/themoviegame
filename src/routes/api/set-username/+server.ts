@@ -8,14 +8,20 @@ const kv = createClient({
 });
 
 export const POST: RequestHandler = async ({ request }) => {
-  const { oldUsername, username, score } = await request.json();
+  const {
+    oldUsername,
+    username,
+    rating_score,
+    budget_score,
+    time_score
+  } = await request.json();
   await kv.zrem("rating_leaderboard", oldUsername);
   await kv.zrem("budget_leaderboard", oldUsername);
   await kv.zrem("time_leaderboard", oldUsername);
 
-  await kv.zadd("rating_leaderboard", { score, member: username });
-  await kv.zadd("budget_leaderboard", { score, member: username });
-  await kv.zadd("time_leaderboard", { score, member: username });
+  await kv.zadd("rating_leaderboard", { score: rating_score, member: username });
+  await kv.zadd("budget_leaderboard", { score: budget_score, member: username });
+  await kv.zadd("time_leaderboard", { score: time_score, member: username });
 
-  return json({ score, username });
+  return json({ rating_score, username });
 }

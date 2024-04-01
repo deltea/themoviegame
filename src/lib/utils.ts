@@ -32,10 +32,10 @@ export function localUsername(newUsername: string = "") {
   return localStorage.getItem("username") || "";
 }
 
-export function localScore(newScore: number = 0) {
+export function localScore(mode: GameMode, newScore: number = 0) {
   if (!browser) return;
-  if (newScore) localStorage.setItem("score", newScore.toString());
-  return localStorage.getItem("score") || "";
+  if (newScore) localStorage.setItem(`${mode}_score`, newScore.toString());
+  return localStorage.getItem(`${mode}_score`) || "";
 }
 
 export const NumberFormatter = new Intl.NumberFormat();
