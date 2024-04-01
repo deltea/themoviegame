@@ -1,18 +1,21 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-	import { localUsername, type GameMode } from "$lib/utils";
   import { Tabs } from "bits-ui";
+  import { onMount } from "svelte";
+  import toast from "svelte-french-toast";
+	import {
+    localUsername,
+    type GameMode,
+    type Leaderboards
+  } from "$lib/utils";
 
   import Title from "$lib/components/Title.svelte";
   import LeaderboardContent from "$lib/components/LeaderboardContent.svelte";
   import Footer from "$lib/components/Footer.svelte";
 	import GameModeSelect from "$lib/components/GameModeSelect.svelte";
-  import toast from "svelte-french-toast";
-
-  export let data: PageData;
 
   let gameMode: GameMode = "rating";
   let username = localUsername();
+  let leaderboards: Leaderboards | null;
 
   function saveUsername() {
     toast.promise(
@@ -43,6 +46,21 @@
 
     localUsername(username);
   }
+
+  async function loadLeaderboard() {
+    leaderboards = null;
+
+    const response = await fetch("/api/leaderboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
+
+    leaderboards = await response.json();
+  }
+
+  onMount(loadLeaderboard);
 </script>
 
 <main class="h-full w-full overflow-y-auto">
@@ -77,16 +95,28 @@
   </div>
 
   <!-- Leaderboard -->
-  <div class="h-screen w-full bg-black text-white flex justify-center items-center">
+  <div class="h-screen w-full bg-black text-white flex justify-center items-center" id="leaderboard">
     <div class="w-96 flex flex-col justify-center items-center h-full py-20 gap-4">
       <Tabs.Root value="rating" class="h-full flex flex-grow">
-        <LeaderboardContent leaderboard={data.rating_leaderboard} value="rating">
+        <LeaderboardContent
+          leaderboard={leaderboards?.rating_leaderboard}
+          value="rating"
+          refresh={loadLeaderboard}
+        >
           Rating Mode Leaderboard
         </LeaderboardContent>
-        <LeaderboardContent leaderboard={data.budget_leaderboard} value="budget">
+        <LeaderboardContent
+          leaderboard={leaderboards?.budget_leaderboard}
+          value="budget"
+          refresh={loadLeaderboard}
+        >
           Budget Mode Leaderboard
         </LeaderboardContent>
-        <LeaderboardContent leaderboard={data.time_leaderboard} value="time">
+        <LeaderboardContent
+          leaderboard={leaderboards?.time_leaderboard}
+          value="time"
+          refresh={loadLeaderboard}
+        >
           Time Mode Leaderboard
         </LeaderboardContent>
         <Tabs.List class="flex flex-col mt-4 gap-2">

@@ -67,6 +67,12 @@ export type Leaderboard = {
   score: number,
 }[];
 
+export type Leaderboards = {
+  rating_leaderboard: Leaderboard,
+  budget_leaderboard: Leaderboard,
+  time_leaderboard: Leaderboard,
+}
+
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
