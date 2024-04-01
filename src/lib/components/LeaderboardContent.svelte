@@ -41,7 +41,9 @@
         {/each}
       </div>
     {:else}
-      <p>There are no scores</p>
+      <div class="font-impactt text-3xl text-white flex justify-center items-center w-full h-80">
+        <h1>There are no scores</h1>
+      </div>
     {/if}
   {:else}
     <div class="font-impactt text-3xl text-white flex justify-center items-center w-full h-80">
