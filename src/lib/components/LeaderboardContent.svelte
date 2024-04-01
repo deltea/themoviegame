@@ -1,14 +1,20 @@
 <script lang="ts">
   import { Tabs } from "bits-ui";
   import type { Leaderboard } from "$lib/utils";
+  import Tooltip from "./Tooltip.svelte";
 
   export let leaderboard: Leaderboard;
   export let value: string;
 </script>
 
 <Tabs.Content {value} class="border-2 border-white rounded-2xl p-6 flex-grow z-10 bg-black">
-  <h1 class="font-impactt text-3xl text-center border-b-2 border-white w-full pb-4">
+  <h1 class="font-impactt text-3xl text-center border-b-2 border-white w-full pb-4 flex items-center justify-between">
     <slot/>
+    <Tooltip text="Refresh leaderboard">
+      <button class="flex items-center hover:scale-125 duration-150 hover:rotate-180 active:scale-100">
+        <iconify-icon icon="mingcute:refresh-4-fill" class="text-3xl"></iconify-icon>
+      </button>
+    </Tooltip>
   </h1>
 
   <div class="flex justify-center items-end p-4 gap-16">

@@ -12,6 +12,7 @@
   import MovieInfoDialog from "$lib/components/MovieInfoDialog.svelte";
   import MoviePoster from "$lib/components/MoviePoster.svelte";
   import Button from "$lib/components/Button.svelte";
+  import Tooltip from "$lib/components/Tooltip.svelte";
 
   export let data: PageData;
 
@@ -32,7 +33,7 @@
       method: "GET",
       headers: {
         "Content-Type": "application/json"
-      } 
+      }
     });
 
     return await response.json();
@@ -205,23 +206,25 @@
         <!-- Rating mode -->
         {:else if data.gameMode === "rating"}
           <h5 class="text-lg">has a rating of</h5>
-          <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt flex items-center text-3xl">
-            <div class="relative w-full h-full">
-              <div
-                class="absolute h-full text-clip whitespace-nowrap overflow-hidden"
-                style:width="{movie1.rating / 10 * 300}px"
-              >
-                {#each [0,1,2,3,4,5,6,7,8,9] as i}
-                  <iconify-icon icon="mingcute:star-fill" class="absolute" style:left="{i * 30}px"></iconify-icon>
+          <Tooltip text={movie1.rating.toString()}>
+            <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt flex items-center text-3xl w-full h-full">
+              <div class="relative w-full h-full">
+                <div
+                  class="absolute h-full text-clip whitespace-nowrap overflow-hidden"
+                  style:width="{movie1.rating / 10 * 300}px"
+                >
+                  {#each [0,1,2,3,4,5,6,7,8,9] as i}
+                    <iconify-icon icon="mingcute:star-fill" class="absolute" style:left="{i * 30}px"></iconify-icon>
+                  {/each}
+                </div>
+              </div>
+              <div class="flex w-full h-full justify-center items-center">
+                {#each [0,1,2,3,4,5,6,7,8,9] as _}
+                  <iconify-icon icon="mingcute:star-line"></iconify-icon>
                 {/each}
               </div>
-            </div>
-            <div class="flex w-full h-full justify-center items-center">
-              {#each [0,1,2,3,4,5,6,7,8,9] as _}
-                <iconify-icon icon="mingcute:star-line"></iconify-icon>
-              {/each}
-            </div>
-          </h2>
+            </h2>
+          </Tooltip>
 
         {:else if data.gameMode === "time"}
           <h5 class="text-lg">was released in the year</h5>
