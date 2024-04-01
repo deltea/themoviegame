@@ -5,7 +5,10 @@
 	import {
     localUsername,
     type GameMode,
-    type Leaderboards
+    type Leaderboards,
+
+    localScore
+
   } from "$lib/utils";
 
   import Title from "$lib/components/Title.svelte";
@@ -24,7 +27,7 @@
         body: JSON.stringify({
           username,
           oldUsername: localUsername(),
-          score: 10,
+          score: localScore() || 0,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -95,8 +98,8 @@
   </div>
 
   <!-- Leaderboard -->
-  <div class="h-screen w-full bg-black text-white flex justify-center items-center" id="leaderboard">
-    <div class="w-96 flex flex-col justify-center items-center h-full py-20 gap-4">
+  <div class="h-screen w-full bg-black text-white flex justify-center items-center p-6 pb-12" id="leaderboard">
+    <div class="flex flex-col justify-center items-center gap-4">
       <Tabs.Root value="rating" class="h-full flex flex-grow">
         <LeaderboardContent
           leaderboard={leaderboards?.rating_leaderboard}

@@ -13,10 +13,16 @@ const zrange_opts = {
   rev: true,
 }
 
+export const POST: RequestHandler = async ({ request }) => {
+  const { score, mode, username } = await request.json();
+
+  return json(await kv.zadd(`${mode}_leaderboard`, { score, member: username }));
+}
+
 export const GET: RequestHandler = async () => {
-  const budget_leaderboard = await kv.zrange("budget_leaderboard", 0, 10, zrange_opts);
-  const rating_leaderboard = await kv.zrange("rating_leaderboard", 0, 10, zrange_opts);
-  const time_leaderboard = await kv.zrange("time_leaderboard", 0, 10, zrange_opts);
+  const budget_leaderboard = await kv.zrange("budget_leaderboard", 0, 9, zrange_opts);
+  const rating_leaderboard = await kv.zrange("rating_leaderboard", 0, 9, zrange_opts);
+  const time_leaderboard = await kv.zrange("time_leaderboard", 0, 9, zrange_opts);
 
   return json({
     budget_leaderboard: formatLeaderboard(budget_leaderboard),

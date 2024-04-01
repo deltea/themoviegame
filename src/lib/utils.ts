@@ -32,6 +32,12 @@ export function localUsername(newUsername: string = "") {
   return localStorage.getItem("username") || "";
 }
 
+export function localScore(newScore: number = 0) {
+  if (!browser) return;
+  if (newScore) localStorage.setItem("score", newScore.toString());
+  return localStorage.getItem("score") || "";
+}
+
 export const NumberFormatter = new Intl.NumberFormat();
 export const DateFormatter = new Intl.DateTimeFormat("en-US", {
   dateStyle: "long"

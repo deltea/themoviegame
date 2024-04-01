@@ -7,6 +7,8 @@
     NumberFormatter,
     type Movie,
     type AnswerState,
+    localScore,
+    localUsername,
   } from "$lib/utils";
 
   import MovieInfoDialog from "$lib/components/MovieInfoDialog.svelte";
@@ -79,7 +81,6 @@
   async function correct() {
     round++;
     answerState = "correct";
-    console.log("correct");
 
     let movieNextPrev = movieNext;
     movieNext = await fetchMovie();
@@ -95,11 +96,13 @@
 
   function incorrect() {
     answerState = "incorrect";
+    if (round > (Number(localScore()) || 0)) {
+      updateScore();
+    }
 
     setTimeout(() => {
       state = "end";
     }, animationDuration * 2);
-    console.log("incorrect");
   }
 
   function setMovieInfo(movie: Movie) {
@@ -113,6 +116,24 @@
       case "rating": return movie1.rating === movie2.rating
       case "time": return new Date(movie1.release_date).getFullYear() === new Date(movie2.release_date).getFullYear()
     }
+  }
+
+  async function updateScore() {
+    if (!localUsername()) return;
+  
+    localScore(round);
+    const response = await fetch("/api/leaderboard", {
+      method: "POST",
+      body: JSON.stringify({
+        score: round,
+        mode: data.gameMode,
+        username: localUsername()
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response);
   }
 
   onMount(setMovies);
