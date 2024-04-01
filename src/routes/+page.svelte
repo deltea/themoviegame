@@ -7,11 +7,42 @@
   import LeaderboardContent from "$lib/components/LeaderboardContent.svelte";
   import Footer from "$lib/components/Footer.svelte";
 	import GameModeSelect from "$lib/components/GameModeSelect.svelte";
+  import toast from "svelte-french-toast";
 
   export let data: PageData;
 
   let gameMode: GameMode = "rating";
   let username = localUsername();
+
+  function saveUsername() {
+    toast.promise(
+      fetch("/api/set-username", {
+        method: "POST",
+        body: JSON.stringify({
+          username,
+          oldUsername: localUsername(),
+          score: 10,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      {
+        loading: "Saving...",
+        success: "Username saved!",
+        error: "Could not save.",
+      },
+      {
+        style: "background: black; border: 2px solid white; shadow: none; color: white;",
+        iconTheme: {
+          primary: "#e2b616",
+          secondary: "#000",
+        }
+      },
+    );
+
+    localUsername(username);
+  }
 </script>
 
 <main class="h-full w-full overflow-y-auto">
@@ -81,7 +112,7 @@
       </Tabs.Root>
 
       <form
-        on:submit|preventDefault={() => localUsername(username)}
+        on:submit|preventDefault={saveUsername}
         class="py6 flex justify-center gap-2 items-center text-white text-xl"
       >
         <input

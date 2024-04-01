@@ -3,6 +3,7 @@
   import "@fontsource-variable/roboto-condensed";
   import "iconify-icon";
   import "../global.css";
+  import { Toaster } from "svelte-french-toast";
 </script>
 
 <svelte:head>
@@ -12,3 +13,5 @@
 <div class="h-screen">
   <slot />
 </div>
+
+<Toaster />
