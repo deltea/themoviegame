@@ -28,7 +28,8 @@
                 <Tooltip text="You">
                   <iconify-icon icon="mingcute:user-2-fill" class="text-lg"></iconify-icon>
                 </Tooltip>
-              {:else if i === 0}
+              {/if}
+              {#if i === 0}
                 <Tooltip text="#1">
                   <iconify-icon icon="mingcute:trophy-fill" class="text-lg"></iconify-icon>
                 </Tooltip>

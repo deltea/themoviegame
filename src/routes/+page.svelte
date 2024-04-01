@@ -20,36 +20,39 @@
   let username = localUsername();
   let leaderboards: Leaderboards | null;
 
-  function saveUsername() {
-    toast.promise(
-      fetch("/api/set-username", {
-        method: "POST",
-        body: JSON.stringify({
-          username,
-          oldUsername: localUsername(),
-          rating_score: localScore("rating") || 0,
-          budget_score: localScore("budget") || 0,
-          time_score: localScore("time") || 0,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+  async function saveUsername() {
+    const response = await fetch("/api/set-username", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        oldUsername: localUsername(),
+        rating_score: localScore("rating") || 0,
+        budget_score: localScore("budget") || 0,
+        time_score: localScore("time") || 0,
       }),
-      {
-        loading: "Saving...",
-        success: "Username saved!",
-        error: "Could not save.",
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
+    });
+
+    if (response.ok) {
+      toast.success("Username saved!", {
         style: "background: black; border: 2px solid white; shadow: none; color: white;",
         iconTheme: {
           primary: "#e2b616",
           secondary: "#000",
         }
-      },
-    );
-
-    localUsername(username);
+      });
+      localUsername(username);
+    } else {
+      toast.error("Could not save username.", {
+        style: "background: black; border: 2px solid white; shadow: none; color: white;",
+        iconTheme: {
+          primary: "#e2b616",
+          secondary: "#000",
+        }
+      });
+    }
   }
 
   async function loadLeaderboard() {

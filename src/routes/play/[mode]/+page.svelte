@@ -183,14 +183,14 @@
       </button>
 
       <!-- Leaderboard -->
-      <button
-        on:click={() => (console.log("leaderboard"))}
+      <a
+        href="/#leaderboard"
         class="flex justify-center items-center size-24 bg-imdb rounded-3xl duration-150 hover:scale-110 active:scale-95">
         <iconify-icon
           icon="mingcute:trophy-fill"
           class="text-6xl text-white duration-200"
         ></iconify-icon>
-      </button>
+      </a>
     </div>
   </main>
 
