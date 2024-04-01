@@ -217,10 +217,13 @@
       <!-- First movie info -->
       <div class="flex flex-col items-center gap-2 justify-center">
         <!-- Movie title -->
-        <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
+        <button
+          on:click={() => setMovieInfo(movie1)}
+          class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl hover:scale-[104%] active:scale-100 duration-150"
+        >
           <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
           <span>{movie1.title}</span>
-        </h3>
+        </button>
 
         <!-- Budget mode -->
         {#if data.gameMode === "budget"}
@@ -271,10 +274,13 @@
       <!-- Second movie -->
       <div class="flex flex-col items-center gap-2 justify-center w-full">
         <!-- Movie title -->
-        <h3 class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl">
+        <button
+          on:click={() => setMovieInfo(movie2)}
+          class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl hover:scale-[104%] active:scale-100 duration-150"
+        >
           <span>{movie2.title}</span>
           <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
-        </h3>
+        </button>
 
         <!-- Budget mode -->
         {#if data.gameMode === "budget"}
