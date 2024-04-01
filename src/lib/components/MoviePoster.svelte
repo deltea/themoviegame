@@ -9,8 +9,12 @@
   export let state: AnswerState;
 </script>
 
-<div class="h-full relative aspect-[2/3]">
-  <img src="https://image.tmdb.org/t/p/original{movie.poster_path}" alt={movie.title} class="h-full">
+<div
+  class="h-full relative hover aspect-[2/3] group overflow-hidden"
+>
+  <div
+    style:background-image="url('https://image.tmdb.org/t/p/original{movie.poster_path}')" class="w-full h-full bg-cover duration-150 group-hover:scale-[105%]"
+  ></div>
 
   <!-- Answer overlay -->
   {#if state}

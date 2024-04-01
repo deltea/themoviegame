@@ -265,9 +265,9 @@
 
       <div class="flex gap-4 items-center justify-center w-full px-8">
         <Separator.Root class="h-[2px] flex-grow bg-white" />
-        <iconify-icon icon="bxs:camera-movie" class="text-3xl -scale-x-100"></iconify-icon>
+        <!-- <iconify-icon icon="bxs:camera-movie" class="text-3xl -scale-x-100"></iconify-icon> -->
         <h1 class="text-3xl font-medium font-impactt">ROUND {round}</h1>
-        <iconify-icon icon="bxs:camera-movie" class="text-3xl"></iconify-icon>
+        <!-- <iconify-icon icon="bxs:camera-movie" class="text-3xl"></iconify-icon> -->
         <Separator.Root class="h-[2px] flex-grow bg-white" />
       </div>
 
