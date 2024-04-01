@@ -158,9 +158,11 @@
           bind:value={username}
           placeholder="Username"
           class="outline-none rounded-lg border-2 border-white focus:border-imdb duration-150 bg-black py-2 px-3 placeholder:text-imdb w-96"
+          maxlength={40}
         />
         <button
-          class="px-4 py-2 bg border-2 border-imdb duration-150 hover:scale-105 active:scale-95 hover:text-black font-impactt flex items-center gap-1 rounded-lg bg-black hover:bg-imdb text-imdb"
+          class="px-4 py-2 bg border-2 border-imdb duration-150 enabled:hover:scale-105 enabled:active:scale-95 enabled:hover:text-black font-impactt flex items-center gap-1 rounded-lg bg-black enabled:hover:bg-imdb text-imdb disabled:text-white disabled:border-white"
+          disabled={!username}
         >
           <iconify-icon icon="mingcute:save-2-fill"></iconify-icon>
           Save
