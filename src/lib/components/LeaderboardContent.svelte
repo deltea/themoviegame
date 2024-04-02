@@ -8,8 +8,8 @@
   export let refresh: () => void;
 </script>
 
-<Tabs.Content {value} class="border-2 border-white rounded-2xl p-6 z-10 bg-black w-[35rem] h-fit pointer-events-auto">
-  <h1 class="font-impactt text-3xl text-center border-b-2 border-white w-full flex items-center justify-between mb-5 pb-1">
+<Tabs.Content {value} class="border-2 border-white rounded-2xl md:p-6 p-4 z-10 bg-black md:w-[35rem] w-[25rem] h-fit pointer-events-auto">
+  <h1 class="font-impactt md:text-3xl text-2xl text-center border-b-2 border-white w-full flex items-center justify-between mb-5 pb-1">
     <slot/>
     <Tooltip text="Refresh leaderboard">
       <button class="flex items-center hover:scale-125 duration-150 hover:rotate-180 active:scale-100" on:click={refresh}>
@@ -20,7 +20,7 @@
 
   {#if leaderboard}
     {#if leaderboard.length > 0}
-      <div class="flex flex-col gap-2 h-80">
+      <div class="flex flex-col gap-2 md:h-80 h-40">
         {#each leaderboard as entry, i}
           <div class="bg-imdb px-2 py-1 rounded-md flex justify-between">
             <div class="flex-grow flex items-center gap-1">
@@ -41,12 +41,12 @@
         {/each}
       </div>
     {:else}
-      <div class="font-impactt text-3xl text-white flex justify-center items-center w-full h-80">
+      <div class="font-impactt text-3xl text-white flex justify-center items-center w-full md:h-80 h-40">
         <h1>There are no scores</h1>
       </div>
     {/if}
   {:else}
-    <div class="font-impactt text-3xl text-white flex justify-center items-center w-full h-80">
+    <div class="font-impactt text-3xl text-white flex justify-center items-center w-full md:h-80 h-40">
       <h1>LOADING LEADERBOARD...</h1>
     </div>
   {/if}

@@ -135,8 +135,8 @@
         <iconify-icon icon="mingcute:close-fill" class="text-3xl"></iconify-icon>
       </Dialog.Close>
 
-      <div class="flex flex-col justify-center items-center gap-4">
-        <Tabs.Root value="rating" class="h-full flex flex-grow">
+      <div class="flex flex-col justify-center items-center md:gap-4 gap-8">
+        <Tabs.Root value="rating" class="h-full flex md:flex-row flex-col flex-grow">
           <LeaderboardContent
             leaderboard={leaderboards?.rating_leaderboard}
             value="rating"
@@ -159,22 +159,22 @@
             Time Mode Leaderboard
           </LeaderboardContent>
 
-          <Tabs.List class="flex flex-col mt-4 gap-2 w-32 flex-grow">
+          <Tabs.List class="flex md:flex-col flex-row md:justify-normal justify-center md:mt-4 gap-2 md:w-32 flex-grow">
             <Tabs.Trigger
               value="rating"
-              class="py-4 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto"
+              class="md:py-4 py-2 text-white md:border-r-2 md:border-y-2 md:border-x-0 border-b-2 border-x-2 border-white md:rounded-r-xl md:rounded-l-none rounded-b-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto md:w-auto w-28"
             >
               Rating Mode
             </Tabs.Trigger>
             <Tabs.Trigger
               value="budget"
-              class="py-4 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto"
+              class="md:py-4 py-2 text-white md:border-r-2 md:border-y-2 md:border-x-0 border-b-2 border-x-2 border-white md:rounded-r-xl md:rounded-l-none rounded-b-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto md:w-auto w-28"
             >
               Budget Mode
             </Tabs.Trigger>
             <Tabs.Trigger
               value="time"
-              class="py-4 text-white border-r-2 border-y-2 border-white rounded-r-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto"
+              class="md:py-4 py-2 text-white md:border-r-2 md:border-y-2 md:border-x-0 border-b-2 border-x-2 border-white md:rounded-r-xl md:rounded-l-none rounded-b-xl duration-150 hover:bg-white hover:text-black hover:scale-110 active:scale-100 font-semibold text-lg bg-black pointer-events-auto md:w-auto w-28"
             >
               Time Mode
             </Tabs.Trigger>
@@ -183,13 +183,13 @@
 
         <form
           on:submit|preventDefault={saveUsername}
-          class="py6 flex justify-center gap-2 items-center text-white text-xl"
+          class="flex justify-center gap-2 items-center text-white text-xl"
         >
           <input
             type="text"
             bind:value={username}
             placeholder="Username"
-            class="outline-none rounded-lg border-2 border-white focus:border-imdb duration-150 bg-black py-2 px-3 placeholder:text-imdb w-96 pointer-events-auto"
+            class="outline-none rounded-lg border-2 border-white focus:border-imdb duration-150 bg-black py-2 px-3 placeholder:text-imdb md:w-96 w-60 pointer-events-auto"
             maxlength={40}
           />
           <button
