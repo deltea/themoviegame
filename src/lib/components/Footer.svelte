@@ -1,4 +1,4 @@
-<footer class="absolute bottom-0 p-2 text-sm flex gap-1 items-center z-20">
+<footer class="p-2 text-sm flex gap-1 items-center md:justify-normal justify-center z-20 w-full h-12 md:h-auto">
   Made with
   <a href="https://svelte.dev" target="_blank" class="h-4">
     <iconify-icon icon="ri:svelte-fill"></iconify-icon>
