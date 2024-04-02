@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Tabs } from "bits-ui";
-  import { localUsername, type Leaderboard, localScore } from "$lib/utils";
+  import { localUsername, type Leaderboard } from "$lib/utils";
   import Tooltip from "./Tooltip.svelte";
 
   export let leaderboard: Leaderboard | undefined;
@@ -20,7 +20,7 @@
 
   {#if leaderboard}
     {#if leaderboard.length > 0}
-      <div class="flex flex-col gap-2 h-80 overflow-scroll">
+      <div class="flex flex-col gap-2 h-80">
         {#each leaderboard as entry, i}
           <div class="bg-imdb px-2 py-1 rounded-md flex justify-between">
             <div class="flex-grow flex items-center gap-1">
