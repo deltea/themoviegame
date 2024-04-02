@@ -23,9 +23,15 @@
       transition:slide={{ duration: animationDuration, axis: "y" }}
     >
       {#if state === "correct"}
-        <iconify-icon icon="mingcute:check-fill" class="text-6xl text-black"></iconify-icon>
+        <div class="flex flex-col justify-center items-center gap-2">
+          <iconify-icon icon="mingcute:check-fill" class="text-6xl text-black"></iconify-icon>
+          <h1 class="text-5xl text-black font-impactt">Correct</h1>
+        </div>
       {:else if state === "incorrect"}
-        <iconify-icon icon="mingcute:close-fill" class="text-6xl text-black"></iconify-icon>
+        <div class="flex flex-col justify-center items-center gap-2">
+          <iconify-icon icon="mingcute:close-fill" class="text-6xl text-black"></iconify-icon>
+          <h1 class="text-5xl text-black font-impactt">Incorrect</h1>
+        </div>
       {/if}
     </div>
   {/if}
