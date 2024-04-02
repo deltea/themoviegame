@@ -62,18 +62,22 @@
       case "budget":
         movie1value = movie1.budget;
         movie2value = movie2.budget;
+        break;
       case "rating":
         movie1value = movie1.rating;
         movie2value = movie2.rating;
+        break;
       case "time":
         movie1value = new Date(movie1.release_date).getTime();
         movie2value = new Date(movie2.release_date).getTime();
+        break;
     }
 
     if (value === "higher") {
       if (movie2value > movie1value) correct();
       else incorrect();
     } else {
+      console.log(movie1value, movie2value);
       if (movie2value < movie1value) correct();
       else incorrect();
     }
@@ -115,8 +119,8 @@
   function checkSameStat(movie1: Movie, movie2: Movie) {
     switch (data.gameMode) {
       case "budget": return movie1.budget === movie2.budget;
-      case "rating": return movie1.rating === movie2.rating
-      case "time": return new Date(movie1.release_date).getFullYear() === new Date(movie2.release_date).getFullYear()
+      case "rating": return movie1.rating === movie2.rating;
+      case "time": return new Date(movie1.release_date).getFullYear() === new Date(movie2.release_date).getFullYear();
     }
   }
 

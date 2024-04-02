@@ -100,7 +100,7 @@
         {/if}
 
         <!-- The rating -->
-        {#if movie.rating && gameMode !== "rating"}
+        <!-- {#if movie.rating && gameMode !== "rating"} -->
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="mingcute:star-line" class="text-xl"></iconify-icon>
@@ -110,7 +110,7 @@
               {movie.rating}
             </span>
           </p>
-        {/if}
+        <!-- {/if} -->
 
         <!-- The movie plot -->
         {#if movie.overview}
