@@ -17,7 +17,6 @@
 </script>
 
 <Dialog.Root bind:open={open}>
-  <Dialog.Trigger />
   <Dialog.Portal>
     <Dialog.Overlay
       transition={fade}

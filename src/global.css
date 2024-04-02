@@ -5,11 +5,6 @@
 body {
   color: white;
   background-color: black;
-  /* overflow: hidden; */
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 @font-face {

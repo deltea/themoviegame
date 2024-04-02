@@ -120,7 +120,6 @@
 
 <!-- Leaderboard dialog -->
 <Dialog.Root bind:open={leaderboardOpen}>
-  <Dialog.Trigger />
   <Dialog.Portal>
     <Dialog.Overlay
       transition={fade}
