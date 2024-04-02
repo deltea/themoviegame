@@ -8,7 +8,7 @@
   export let refresh: () => void;
 </script>
 
-<Tabs.Content {value} class="border-2 border-white rounded-2xl p-6 z-10 bg-black w-[35rem] h-fit">
+<Tabs.Content {value} class="border-2 border-white rounded-2xl p-6 z-10 bg-black w-[35rem] h-fit pointer-events-auto">
   <h1 class="font-impactt text-3xl text-center border-b-2 border-white w-full flex items-center justify-between mb-5 pb-1">
     <slot/>
     <Tooltip text="Refresh leaderboard">

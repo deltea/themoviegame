@@ -21,7 +21,7 @@
     <div class="bg-black">
       <Tooltip.Arrow class="border-l-2 border-t-2 border-white rounded-[4px]" size={12} />
     </div>
-    <div class="flex justify-center items-center border-2 border-white py-2 px-4 bg-black rounded-md">
+    <div class="flex justify-center items-center border-2 border-white py-2 px-4 bg-black rounded-md font-sans font-normal text-base">
       {text}
     </div>
   </Tooltip.Content>
