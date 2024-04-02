@@ -9,7 +9,7 @@
   <RadioGroup.Item
     value="budget"
     id="budget"
-    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:scale-110 duration-150 w-[21rem]"
+    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:bg-imdb data-[state=checked]:text-black text-white data-[state=checked]:scale-110 duration-150 w-[21rem] hover:border-imdb"
   >
     <h3 class="text-2xl font-impactt tracking-wider flex justify-center items-center">
       <iconify-icon icon="ic:round-attach-money" class=""></iconify-icon>
@@ -20,7 +20,7 @@
   <RadioGroup.Item
     value="rating"
     id="rating"
-    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:scale-110 duration-150 w-[21rem]"
+    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:bg-imdb data-[state=checked]:text-black text-white data-[state=checked]:scale-110 duration-150 w-[21rem] hover:border-imdb"
   >
     <h3 class="text-2xl font-impactt tracking-wider flex justify-center items-center gap-1">
       <iconify-icon icon="material-symbols:star-rounded" class=""></iconify-icon>
@@ -31,7 +31,7 @@
   <RadioGroup.Item
     value="time"
     id="time"
-    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:scale-110 duration-150 w-[21rem]"
+    class="p-6 rounded-2xl border-2 border-white data-[state=checked]:border-imdb data-[state=checked]:bg-imdb data-[state=checked]:text-black text-white data-[state=checked]:scale-110 duration-150 w-[21rem] hover:border-imdb"
   >
     <h3 class="text-2xl font-impactt tracking-wider flex justify-center items-center gap-1">
       <iconify-icon icon="material-symbols:event-outline-rounded" class=""></iconify-icon>
