@@ -63,35 +63,27 @@
         {/if}
 
         <!-- The release date -->
-        {#if movie.release_date}
+        {#if movie.release_date && gameMode !== "time"}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="material-symbols:calendar-clock-outline-rounded" class="text-xl"></iconify-icon>
               Release Date:
             </span>
             <span>
-              {#if gameMode === "time"}
-                [REDACTED ON RELEASE DATE MODE]
-              {:else}
-                {DateFormatter.format(new Date(movie.release_date))}
-              {/if}
+              {DateFormatter.format(new Date(movie.release_date))}
             </span>
           </p>
         {/if}
 
         <!-- The budget -->
-        {#if movie.budget}
+        {#if movie.budget && gameMode !== "budget"}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="mingcute:pig-money-line" class="text-xl"></iconify-icon>
               Budget:
             </span>
             <span>
-              {#if gameMode === "budget"}
-                [REDACTED ON BUDGET MODE]
-              {:else}
-                ${NumberFormatter.format(movie.budget)}
-              {/if}
+              ${NumberFormatter.format(movie.budget)}
             </span>
           </p>
         {/if}
@@ -108,18 +100,14 @@
         {/if}
 
         <!-- The rating -->
-        {#if movie.rating}
+        {#if movie.rating && gameMode !== "rating"}
           <p class="flex items-center">
             <span class="font-semibold mr-2 flex items-center gap-1.5">
               <iconify-icon icon="mingcute:star-line" class="text-xl"></iconify-icon>
               Rating:
             </span>
             <span>
-              {#if gameMode === "rating"}
-                [REDACTED ON RATING MODE]
-              {:else}
-                {movie.rating}
-              {/if}
+              {movie.rating}
             </span>
           </p>
         {/if}
