@@ -86,12 +86,12 @@
       >
         <iconify-icon
           icon="bx:camera-movie"
-          class="text-[26px] group-hover:-scale-x-100 duration-150"
+          class="text-[26px] group-hover:scale-x-100 -scale-x-100 duration-150"
         ></iconify-icon>
         <span>PLAY!</span>
         <iconify-icon
           icon="bx:camera-movie"
-          class="text-[26px] group-hover:scale-x-100 -scale-x-100 duration-150"
+          class="text-[26px] group-hover:-scale-x-100 duration-150"
         ></iconify-icon>
       </a>
     </div>
