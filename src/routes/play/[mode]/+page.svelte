@@ -352,6 +352,14 @@
         </div>
       {/if}
 
+      <!-- Home button -->
+      <a
+        href="/"
+        class="text-white bg-transparent border-2 border-white rounded-full flex justify-center items-center size-20 absolute left-1/2 -translate-x-1/2 -top-10 duration-150 hover:bg-white z-50 hover:text-black"
+      >
+        <iconify-icon icon="mingcute:home-7-fill" class="text-xl mt-8"></iconify-icon>
+      </a>
+
       <button
         on:click={() => setMovieInfo(movie1)}
         style:background-image="url('https://image.tmdb.org/t/p/original{movie1.poster_path}')" class="w-1/2 bg-cover bg-center duration-150 group-hover:scale-[105%] aspect-[2/3] h-min max-h-[25rem]"
