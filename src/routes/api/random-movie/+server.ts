@@ -4,7 +4,7 @@ import { random, type Movie } from "$lib/utils";
 
 export const GET: RequestHandler = async () => {
   // Get 1 random page of popular movies
-  const pages = 25;
+  const pages = 30;
   const random_page = random(1, pages);
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&include_adult=false&with_original_language=en&include_video=false&sort_by=popularity.desc&page=${random_page}`);
   const popular_movies = await response.json();
