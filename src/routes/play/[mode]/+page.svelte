@@ -377,24 +377,30 @@
         <!-- First movie info -->
         <div class="flex flex-col items-center gap-2 justify-center">
           <!-- Movie title -->
-          <button
+          <!-- <button
             on:click={() => setMovieInfo(movie1)}
             class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl hover:scale-[104%] active:scale-100 duration-150"
           >
             <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
             <span>{movie1.title}</span>
-          </button>
+          </button> -->
 
           <!-- Budget mode -->
           {#if data.gameMode === "budget"}
-            <h5 class="text-lg">has a budget of</h5>
-            <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
+              has a budget of
+            </h5>
+            <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-4xl">
               ${NumberFormatter.format(movie1.budget)}
             </h2>
 
           <!-- Rating mode -->
           {:else if data.gameMode === "rating"}
-            <h5 class="text-lg">has a rating of</h5>
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
+              has a rating of
+            </h5>
             <Tooltip text={movie1.rating.toString()}>
               <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt flex items-center text-3xl w-full h-full">
                 <div class="relative w-full h-full">
@@ -416,7 +422,10 @@
             </Tooltip>
 
           {:else if data.gameMode === "time"}
-            <h5 class="text-lg">was released in the year</h5>
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-left-rounded"></iconify-icon>
+              was released in the year
+            </h5>
             <h2 class="bg-imdb rounded-md px-3 py-1 text-black font-impactt text-5xl">
               {new Date(movie1.release_date).getFullYear()}
             </h2>
@@ -432,17 +441,27 @@
         <!-- Second movie -->
         <div class="flex flex-col items-center gap-2 justify-center w-full">
           <!-- Movie title -->
-          <button
+          <!-- <button
             on:click={() => setMovieInfo(movie2)}
             class="border-2 border-white rounded-lg px-3 py-1 font-impactt flex items-center justify-center text-center gap-2 mx-4 text-2xl hover:scale-[104%] active:scale-100 duration-150"
           >
             <span>{movie2.title}</span>
             <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
-          </button>
+          </button> -->
+          <!-- <button
+            on:click={() => setMovieInfo(movie1)}
+            class="font-impactt flex items-center text-center gap-2 mx-4 text-2xl"
+          >
+            <span>{movie2.title}</span>
+            <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
+          </button> -->
 
           <!-- Budget mode -->
           {#if data.gameMode === "budget"}
-            <h5 class="text-lg">has a</h5>
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
+              has a
+            </h5>
 
             <div class="space-y-2 w-full px-8">
               <Button on:click={() => guessPick("higher")} icon="material-symbols:arrow-upward-alt-rounded">Higher</Button>
@@ -453,7 +472,10 @@
 
           <!-- Rating mode -->
           {:else if data.gameMode === "rating"}
-            <h5 class="text-lg">has a</h5>
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
+              has a
+            </h5>
 
             <div class="space-y-2 w-full px-8">
               <Button on:click={() => guessPick("higher")} icon="material-symbols:arrow-upward-alt-rounded">Higher</Button>
@@ -464,11 +486,14 @@
 
           <!-- Time mode -->
           {:else if data.gameMode === "time"}
-            <h5 class="text-lg">is</h5>
+            <h5 class="text-xl flex items-center gap-1">
+              <iconify-icon icon="material-symbols:arrow-circle-right-rounded"></iconify-icon>
+              was released
+            </h5>
 
             <div class="space-y-2 w-full px-8">
-              <Button on:click={() => guessPick("higher")} icon="material-symbols:arrow-upward-alt-rounded">Newer</Button>
-              <Button on:click={() => guessPick("lower")} icon="material-symbols:arrow-downward-alt-rounded">Older</Button>
+              <Button on:click={() => guessPick("higher")} icon="material-symbols:arrow-upward-alt-rounded">Later</Button>
+              <Button on:click={() => guessPick("lower")} icon="material-symbols:arrow-downward-alt-rounded">Earlier</Button>
             </div>
           {/if}
         </div>
