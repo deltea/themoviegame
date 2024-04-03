@@ -41,12 +41,12 @@
           class="group bg-black text-imdb border-2 border-imdb py-2 text-2xl rounded-md hover:scale-105 hover:bg-imdb hover:text-black active:scale-95 duration-150 font-bold flex items-center gap-3 md:w-80 w-1/2 justify-center"
         >
           <iconify-icon
-            icon="material-symbols:trophy-rounded"
+            icon="material-symbols:trophy-outline-rounded"
             class="text-[26px] group-hover:scale-x-100 -scale-x-100 duration-150 md:block hidden"
           ></iconify-icon>
           <span>LEADERBOARD</span>
           <iconify-icon
-            icon="material-symbols:trophy-rounded"
+            icon="material-symbols:trophy-outline-rounded"
             class="text-[26px] group-hover:-scale-x-100 duration-150 md:block hidden"
           ></iconify-icon>
         </button>
