@@ -40,7 +40,7 @@ export function localScore(mode: GameMode, newScore: number = 0) {
 
 export const NumberFormatter = new Intl.NumberFormat();
 export const DateFormatter = new Intl.DateTimeFormat("en-US", {
-  dateStyle: "long"
+  dateStyle: "medium"
 });
 
 export const genreIcons: {

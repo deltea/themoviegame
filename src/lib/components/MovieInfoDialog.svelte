@@ -26,7 +26,7 @@
     <Dialog.Content
       transition={fly}
       transitionConfig={{ y: 500, duration: 150, opacity: 100 }}
-      class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 w-[40rem] flex flex-col gap-5"
+      class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-black rounded-2xl border-2 border-imdb p-6 md:w-[40rem] w-[90%] md:mx-0 flex flex-col gap-5"
     >
       <!-- Top Bar -->
       <div class="flex justify-between items-center">
@@ -118,7 +118,7 @@
               <iconify-icon icon="mingcute:book-6-line" class="text-xl"></iconify-icon>
               Overview:
             </h2>
-            <p>{movie.overview}</p>
+            <p class="md:max-h-none max-h-32 overflow-auto">{movie.overview}</p>
           </div>
         {/if}
       </div>

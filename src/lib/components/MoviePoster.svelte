@@ -13,7 +13,7 @@
   class="h-full relative hover aspect-[2/3] group overflow-hidden"
 >
   <div
-    style:background-image="url('https://image.tmdb.org/t/p/original{movie.poster_path}')" class="w-full h-full bg-cover duration-150 group-hover:scale-[105%]"
+    style:background-image="url('https://image.tmdb.org/t/p/original{movie.poster_path}')" class="w-full h-full bg-cover bg-center duration-150 group-hover:scale-[105%]"
   ></div>
 
   <!-- Answer overlay -->
