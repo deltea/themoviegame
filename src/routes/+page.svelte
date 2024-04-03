@@ -12,7 +12,7 @@
 
 <main class="h-full w-full">
   <div class="h-screen flex flex-col">
-    <div class="flex flex-col justify-center items-center md:gap-16 gap-8 flex-grow">
+    <div class="flex flex-col md:justify-center items-center md:gap-16 justify-evenly flex-grow">
       <Title />
 
       <!-- Game mode selection -->
