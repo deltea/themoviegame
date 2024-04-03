@@ -5,10 +5,10 @@ export default {
     fontFamily: {
       "sans": ["Roboto Condensed Variable"]
     },
-    height: {
-      "screen": "100dvh",
-    },
     extend: {
+      height: {
+        "screen": "100dvh",
+      },
       colors: {
         "imdb": "#e2b616",
         "muted": "#555",
