@@ -331,7 +331,27 @@
   <!-- Mobile version -->
   <main class="flex flex-col md:hidden h-full w-full justify-between relative" transition:slide>
     <!-- Posters -->
-    <div class="flex w-full">
+    <div class="flex w-full relative">
+      <!-- Answer state -->
+      {#if answerState}
+        <div
+          class="absolute w-full h-full bg-imdb"
+          transition:slide={{ duration: animationDuration, axis: "y" }}
+        >
+          {#if answerState === "correct"}
+            <div class="flex flex-col justify-center items-center gap-2 h-full">
+              <iconify-icon icon="mingcute:check-fill" class="text-6xl text-black"></iconify-icon>
+              <h1 class="text-5xl text-black font-impactt">Correct</h1>
+            </div>
+          {:else if answerState === "incorrect"}
+            <div class="flex flex-col justify-center items-center gap-2 h-full">
+              <iconify-icon icon="mingcute:close-fill" class="text-6xl text-black"></iconify-icon>
+              <h1 class="text-5xl text-black font-impactt">Incorrect</h1>
+            </div>
+          {/if}
+        </div>
+      {/if}
+
       <button
         on:click={() => setMovieInfo(movie1)}
         style:background-image="url('https://image.tmdb.org/t/p/original{movie1.poster_path}')" class="w-1/2 bg-cover bg-center duration-150 group-hover:scale-[105%] aspect-[2/3] h-min max-h-[25rem]"
