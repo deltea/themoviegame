@@ -15,6 +15,7 @@
   import MoviePoster from "$lib/components/MoviePoster.svelte";
   import Button from "$lib/components/Button.svelte";
   import Tooltip from "$lib/components/Tooltip.svelte";
+  import Leaderboard from "$lib/components/Leaderboard.svelte";
 
   export let data: PageData;
 
@@ -30,6 +31,7 @@
   let answerState: AnswerState = null;
   let infoDialogOpen = false;
   let highScore = false;
+  let leaderboardOpen = false;
 
   async function fetchMovie() {
     const response = await fetch("/api/random-movie", {
@@ -163,7 +165,7 @@
     {#if highScore}
       <h2 class="text-imdb text-2xl">You beat your high score!</h2>
     {/if}
-    <div class="flex justify-center items-center gap-6">
+    <div class="flex justify-center items-center md:gap-6 gap-4">
       <!-- Home -->
       <a
         href="/"
@@ -185,14 +187,14 @@
       </button>
 
       <!-- Leaderboard -->
-      <a
-        href="/#leaderboard"
+      <button
+        on:click={() => (leaderboardOpen = true)}
         class="flex justify-center items-center size-24 bg-imdb rounded-3xl duration-150 hover:scale-110 active:scale-95">
         <iconify-icon
           icon="material-symbols:trophy-rounded"
           class="text-6xl text-white duration-200"
         ></iconify-icon>
-      </a>
+      </button>
     </div>
   </main>
 
@@ -480,3 +482,5 @@
   movie={movieInfo}
   gameMode={data.gameMode}
 />
+
+<Leaderboard bind:open={leaderboardOpen} />
