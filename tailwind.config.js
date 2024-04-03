@@ -5,6 +5,9 @@ export default {
     fontFamily: {
       "sans": ["Roboto Condensed Variable"]
     },
+    height: {
+      "screen": "100dvh",
+    },
     extend: {
       colors: {
         "imdb": "#e2b616",
