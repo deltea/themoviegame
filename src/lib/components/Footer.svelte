@@ -6,5 +6,5 @@
   and
   <iconify-icon icon="mdi:cards-heart"></iconify-icon>
   by
-  <a href="https://github.com/thcheetah777" class="underline" target="_blank">thcheetah777</a>
+  <a href="https://github.com/deltea" class="underline" target="_blank">deltea</a>
 </footer>
